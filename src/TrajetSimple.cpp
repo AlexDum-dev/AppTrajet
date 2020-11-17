@@ -34,8 +34,8 @@ using namespace std;
 //Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
 //
-{
-} //----- Fin de operator =
+//{
+//} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -68,7 +68,7 @@ TrajetSimple::TrajetSimple (char * villeD, char *villeA, char *moyDeT)
 } //----- Fin de TrajetSimple
 
 
-TrajetSimple::~TrajetSimple ( )
+TrajetSimple::~TrajetSimple (void)
 // Algorithme :
 //
 {
@@ -80,24 +80,24 @@ TrajetSimple::~TrajetSimple ( )
 #endif
 } //----- Fin de ~TrajetSimple
 
-TrajetSImple::AfficheTrajet()
-//Algorithme :
+void TrajetSimple::AfficheTrajet() const 
+//Algorithme : test
 //
 {
 	cout << "de ";
-	for(int i=0;i<strlen(villeDepart);i++)
+	for(unsigned int i=0;i<strlen(villeDepart);i++)
 	{
-		cout << villeDepart[i]
+		cout << villeDepart[i];
 	}
 	cout << " à ";
-	for(int j=0;i<strlen(villeArrivee);i++)
+	for(unsigned int j=0;j<strlen(villeArrivee);j++)
         {
-                cout << villeArrivee[j] 
+                cout << villeArrivee[j]; 
         }
 	cout << " en ";
-	for(int k=0;i<strlen(moyDeTransport);i++)
+	for(unsigned int k=0;k<strlen(moyDeTransport);k++)
         {
-                cout << moyDeTransport[k]
+                cout << moyDeTransport[k];
         }
 	cout << endl;
 }
