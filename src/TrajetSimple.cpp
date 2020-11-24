@@ -17,6 +17,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -49,15 +50,15 @@ using namespace std;
 //} //----- Fin de Xxx (constructeur de copie)
 
 
-TrajetSimple::TrajetSimple (char * villeD, char *villeA, char *moyDeT)
+TrajetSimple::TrajetSimple (char *villeD, char *villeA, char *moyDeT)
 {
 // Algortihme :
 // Déclaration dynamique des attributs avec la longueur des paramètres +1 qui est lié au caractère '\0'
 // Puis copie avec la fonction strcpy(destination, source)
 //
-	char * villeDepart = new char[strlen(villeD)+1];
-	char * villeArrivee = new char[strlen(villeA)+1];
-	char * moyDeTransport = new char[strlen(moyDeT)+1];
+	villeDepart = new char[strlen(villeD)+1];
+	villeArrivee = new char[strlen(villeA)+1];
+	moyDeTransport = new char[strlen(moyDeT)+1];
 	
 	strcpy(villeDepart, villeD);
 	strcpy(villeArrivee, villeA);
@@ -72,9 +73,9 @@ TrajetSimple::~TrajetSimple (void)
 // Algorithme :
 //
 {
-	delete[] villeDepart;
-	delete[] villeArrivee;
-	delete[] moyDeTransport;
+	delete [] villeDepart;
+	delete [] villeArrivee;
+	delete [] moyDeTransport;
 #ifdef MAP
     cout << "Appel au destructeur de TrajetSimple" << endl;
 #endif

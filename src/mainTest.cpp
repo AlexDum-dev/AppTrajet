@@ -8,14 +8,11 @@ using namespace std;
 
 int main()
 {
-	char vd[1];
-	vd[0] = 'P';
-	char va[1];
-	va[0] = 'L';
-	char mt[1];
-	mt[0] = 'T';
-	TrajetSimple traj (vd, va, mt);
-	traj.AfficheTrajet();
+	char vd[2+1] = {'P','a', '\0'};
+	char va[2+1] = {'M', 'a','\0'};
+	char mt[2+1] = {'V', 'e', '\0'};
+	TrajetSimple traj (vd,va,mt);
+	//traj.AfficheTrajet();
 
 	return 0;
 }
