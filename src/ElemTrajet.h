@@ -34,6 +34,11 @@ public:
     //
     // Contrat :
     //
+
+	void Enchaine ( const ElemTrajet & * unElemTrajet ) 
+	{
+		trajSuivant = unElemTrajet;
+	}
 	
 //------------------------------------------------- Surcharge d'opérateurs
     ElemTrajet & operator = ( const ElemTrajet & unElemTrajet );
@@ -50,13 +55,21 @@ public:
     // Contrat :
     //
 
-    ElemTrajet ( const Trajet & trajet , ElemTrajet* next ){};
+    ElemTrajet ( const Trajet & trajet )
+	{
+		traj = trajet;
+		trajSuivant = new ElemTrajet;
+		trajSuivant = nullptr;
+	}
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~ElemTrajet ( ){};
+    virtual ~ElemTrajet ( )
+	{
+		delete trajSuivant;
+	}
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,8 +82,8 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-Trajet* traj;
-ElemTrajet* trajSuivant;
+Trajet traj;
+ElemTrajet * trajSuivant;
 
 };
 
