@@ -29,6 +29,12 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     void AfficheTrajet() const;
+
+	char * GetMoyenTransport ( );
+	char * GetVilleDepart ( );
+	char * GetVilleArrivee ( );
+
+
     //Mode d'emploi : 
     //Print sur l'entrée standard la ville de départ et d'arrivée ainsi que le moyen de transport
     //Contrat : 

@@ -1,19 +1,19 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetSimple  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include<cstring>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -30,6 +30,20 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+char * TrajetSimple::GetMoyenTransport ( )
+{
+	return moyDeTransport;
+}
+
+char * TrajetSimple::GetVilleDepart ( )
+{
+	return villeDepart;
+}
+
+char * TrajetSimple::GetVilleArrivee ( )
+{
+	return villeArrivee;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 //Xxx & Xxx::operator = ( const Xxx & unXxx )

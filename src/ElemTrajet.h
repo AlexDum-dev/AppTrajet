@@ -11,7 +11,7 @@
 #define ELEMTRAJET_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include"Trajet.h"
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -35,11 +35,7 @@ public:
     // Contrat :
     //
 
-	void Enchaine ( const ElemTrajet & * unElemTrajet ) 
-	{
-		trajSuivant = unElemTrajet;
-	}
-	
+		
 //------------------------------------------------- Surcharge d'opérateurs
     ElemTrajet & operator = ( const ElemTrajet & unElemTrajet );
     // Mode d'emploi :
@@ -55,21 +51,13 @@ public:
     // Contrat :
     //
 
-    ElemTrajet ( const Trajet & trajet )
-	{
-		traj = trajet;
-		trajSuivant = new ElemTrajet;
-		trajSuivant = nullptr;
-	}
+    ElemTrajet ( const Trajet & unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~ElemTrajet ( )
-	{
-		delete trajSuivant;
-	}
+    virtual ~ElemTrajet ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,10 +68,12 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
 
+	bool HasNext ( );
+
 //----------------------------------------------------- Attributs protégés
 
-Trajet traj;
-ElemTrajet * trajSuivant;
+	Trajet * traj;
+	ElemTrajet * trajSuivant;
 
 };
 

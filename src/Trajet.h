@@ -34,6 +34,10 @@ public:
     // Contrat :
     //
 
+	virtual char * GetMoyenTransport ( ){};
+	virtual char * GetVilleDepart ( ){};
+	virtual char * GetVilleArrivee ( ){};
+
     virtual void AfficheTrajet ( ) const = 0;
     // Mode d'emploi :
     // La méthode AfficheTrajet appelle la méthode AfficheTrajet des classes
