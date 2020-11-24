@@ -43,7 +43,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Trajet & operator = ( const Trajet & unTrajet );
+    //Trajet & operator = ( const Trajet & unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
@@ -51,20 +51,20 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
+    //Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Trajet ( );
+    Trajet ( ){}
     // Mode d'emploi :
     // Le constructeur de Trajet initialise un trajet contenant la ville 
     // de départ et la ville d'arrivée.
     // Contrat :
     //
 
-    virtual ~Trajet ( );
+    virtual ~Trajet ( ){}
     // Mode d'emploi :
     // 
     // Contrat :
