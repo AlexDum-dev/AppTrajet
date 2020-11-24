@@ -12,7 +12,7 @@ int main()
 	char va[2+1] = {'M', 'a','\0'};
 	char mt[2+1] = {'V', 'e', '\0'};
 	TrajetSimple traj (vd,va,mt);
-	//traj.AfficheTrajet();
+	traj.AfficheTrajet();
 
 	return 0;
 }
