@@ -13,8 +13,12 @@ int main()
 	char mt[2+1] = {'V', 'e', '\0'};
 	TrajetSimple traj (vd,va,mt);
 	traj.AfficheTrajet();
-	
+	TrajetSimple traj2(va, vd, mt);
+	traj2.AfficheTrajet();
 	ListeChainee list(traj);
+
+	list.AjouterTrajet(traj2);
+	//list.AfficheListe();
 
 	return 0;
 }

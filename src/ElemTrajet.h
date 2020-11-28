@@ -35,7 +35,12 @@ public:
     // Contrat :
     //
     
+    void SetNext(ElemTrajet *ptrElemTrajet);
+
     ElemTrajet* GetNext();
+
+    Trajet * GetTraj();
+
 		
 //------------------------------------------------- Surcharge d'opérateurs
     ElemTrajet & operator = ( const ElemTrajet & unElemTrajet );

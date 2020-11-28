@@ -23,14 +23,18 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
+void ListeChainee::AfficheListe()
+{
+	firstElem -> GetTraj() -> AfficheTrajet(); 
+	lastElem -> GetTraj() -> AfficheTrajet();
+}
 void ListeChainee::AjouterTrajet(const Trajet & unTrajet)
 //Algorithme : On créé un nouvel élement, on fait pointer le suivant du dernier élément sur ce nouvel élément
 //ce qui raccorde la chaine puis on fait pointer le dernier élément sur ce nouvel élément.
 {
 	ElemTrajet *elem;
 	elem = new ElemTrajet(unTrajet);
-	elem = lastElem -> GetNext();
+	lastElem -> SetNext(elem); //SetNext à faire
 	lastElem = elem;
 	delete elem;
 }

@@ -29,10 +29,21 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 //
+//
+
+void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
+{
+	trajSuivant = ptrElemTrajet; //on fait pointer le trajet suivant sur un trajet passé en paramètre
+}
 
 ElemTrajet* ElemTrajet::GetNext()
 {
 	return trajSuivant;
+}
+
+Trajet * ElemTrajet::GetTraj()
+{
+	return traj;
 }
 //------------------------------------------------- Surcharge d'opérateurs
 /*

@@ -35,6 +35,9 @@ public:
     //
     //
     //
+    //
+
+    void AfficheListe();
     void AjouterTrajet(const Trajet & unTrajet);
     // Mode d'emploi : 
     // Appel de la méthode à partir d'un instance de ListeChainee en passant en paramètre un objet de type Trajet
