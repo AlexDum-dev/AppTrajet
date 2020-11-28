@@ -50,7 +50,7 @@ ElemTrajet::ElemTrajet ( const ElemTrajet & unElemTrajet )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ElemTrajet::ElemTrajet ( const Trajet & unTrajet )
+ElemTrajet::ElemTrajet ( Trajet * unTrajet )
 // Algorithme :
 //
 {
@@ -58,9 +58,9 @@ ElemTrajet::ElemTrajet ( const Trajet & unTrajet )
     cout << "Appel au constructeur de <ElemTrajet>" << endl;
 #endif
 
-	traj = new Trajet;
+	//traj = new Trajet;
 	trajSuivant = new ElemTrajet;
-	traj = &unTrajet;
+	traj = unTrajet;
 
 } //----- Fin de ElemTrajet
 
@@ -73,7 +73,7 @@ ElemTrajet::~ElemTrajet ( )
     cout << "Appel au destructeur de <ElemTrajet>" << endl;
 #endif
 
-	if (HasNext())
+	if (HasNext( ))
 	{
 		delete traj;
 		delete trajSuivant;
@@ -86,7 +86,7 @@ ElemTrajet::~ElemTrajet ( )
 
 //----------------------------------------------------- Méthodes protégées
 
-bool HasNext ( )
+bool ElemTrajet::HasNext ( )
 {
 	if (trajSuivant == nullptr)
 	{

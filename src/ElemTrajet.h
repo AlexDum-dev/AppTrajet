@@ -51,11 +51,13 @@ public:
     // Contrat :
     //
 
-    ElemTrajet ( const Trajet & unTrajet );
+    ElemTrajet ( Trajet * unTrajet );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+	ElemTrajet ( ){};
 
     virtual ~ElemTrajet ( );
     // Mode d'emploi :
