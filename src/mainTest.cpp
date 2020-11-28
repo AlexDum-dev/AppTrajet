@@ -3,7 +3,7 @@
 
 #include"TrajetSimple.h"
 #include"Trajet.h"
-
+#include"ListeChainee.h"
 using namespace std;
 
 int main()
@@ -13,6 +13,8 @@ int main()
 	char mt[2+1] = {'V', 'e', '\0'};
 	TrajetSimple traj (vd,va,mt);
 	traj.AfficheTrajet();
+	
+	ListeChainee list(traj);
 
 	return 0;
 }

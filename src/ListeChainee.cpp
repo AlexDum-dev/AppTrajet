@@ -55,7 +55,7 @@ ListeChainee::ListeChainee ( const ListeChainee & uneListeChainee )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ListeChainee::ListeChainee (const Trajet  &unTrajet)
+ListeChainee::ListeChainee (const Trajet & unTrajet)
 // Algorithme :
 //
 {
@@ -70,8 +70,7 @@ ListeChainee::ListeChainee (const Trajet  &unTrajet)
 
 
 ListeChainee::~ListeChainee ( )
-// Algorithme : On crée deux pointeurs qui vont parcourir la liste chainée. Tant que le deuxième
-//pointeur n'est pas égal au dernier élément de la liste on libère la mémoire alouée du pointeur précédent.
+//
 //
 {	
 	delete firstElem;

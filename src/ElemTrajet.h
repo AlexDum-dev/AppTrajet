@@ -34,7 +34,8 @@ public:
     //
     // Contrat :
     //
-
+    
+    ElemTrajet* GetNext();
 		
 //------------------------------------------------- Surcharge d'opérateurs
     ElemTrajet & operator = ( const ElemTrajet & unElemTrajet );
@@ -51,13 +52,13 @@ public:
     // Contrat :
     //
 
-    ElemTrajet ( Trajet * unTrajet );
+    ElemTrajet (const Trajet & unTrajet);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-	ElemTrajet ( ){};
+    ElemTrajet ( ){};
 
     virtual ~ElemTrajet ( );
     // Mode d'emploi :

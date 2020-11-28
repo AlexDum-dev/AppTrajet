@@ -28,7 +28,12 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+//
 
+ElemTrajet* ElemTrajet::GetNext()
+{
+	return trajSuivant;
+}
 //------------------------------------------------- Surcharge d'opérateurs
 /*
 Xxx & Xxx::operator = ( const Xxx & unXxx )
@@ -50,17 +55,16 @@ ElemTrajet::ElemTrajet ( const ElemTrajet & unElemTrajet )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ElemTrajet::ElemTrajet ( Trajet * unTrajet )
+ElemTrajet::ElemTrajet (const Trajet & unTrajet )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ElemTrajet>" << endl;
 #endif
-
-	//traj = new Trajet;
+	
 	trajSuivant = new ElemTrajet;
-	traj = unTrajet;
+	*traj = unTrajet;
 
 } //----- Fin de ElemTrajet
 
