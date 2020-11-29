@@ -18,6 +18,7 @@ using namespace std;
 #include "ListeChainee.h"
 #include "Trajet.h"
 #include "ElemTrajet.h"
+#include "TrajetSimple.h"
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -26,7 +27,7 @@ using namespace std;
 void ListeChainee::AfficheListe()
 {
 	firstElem -> GetTraj() -> AfficheTrajet(); 
-	lastElem -> GetTraj() -> AfficheTrajet();
+	//lastElem -> GetTraj() -> AfficheTrajet();
 }
 void ListeChainee::AjouterTrajet(const Trajet & unTrajet)
 //Algorithme : On créé un nouvel élement, on fait pointer le suivant du dernier élément sur ce nouvel élément
@@ -34,9 +35,8 @@ void ListeChainee::AjouterTrajet(const Trajet & unTrajet)
 {
 	ElemTrajet *elem;
 	elem = new ElemTrajet(unTrajet);
-	lastElem -> SetNext(elem); //SetNext à faire
+	lastElem -> SetNext(elem); 
 	lastElem = elem;
-	delete elem;
 }
 
 
@@ -64,7 +64,9 @@ ListeChainee::ListeChainee (const Trajet & unTrajet)
 //
 {
 	firstElem = new ElemTrajet(unTrajet);
-	lastElem = new ElemTrajet(unTrajet); // Initialisation de la liste chainee avec un seul élément qui est le premier et le dernier
+
+	(firstElem -> GetTraj()).AfficheTrajet(); //-> AfficheTrajet();
+	//lastElem = firstElem;
 
 	
 #ifdef MAP
@@ -78,7 +80,7 @@ ListeChainee::~ListeChainee ( )
 //
 {	
 	delete firstElem;
-	delete lastElem;
+	//delete lastElem;
 
 #ifdef MAP
     cout << "Appel au destructeur de <ListeChainee>" << endl;

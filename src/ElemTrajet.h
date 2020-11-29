@@ -37,7 +37,7 @@ public:
     
     void SetNext(ElemTrajet *ptrElemTrajet);
 
-    ElemTrajet* GetNext();
+    ElemTrajet * GetNext();
 
     Trajet * GetTraj();
 
