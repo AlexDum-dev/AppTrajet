@@ -17,3 +17,8 @@ ElemTrajet.o : ElemTrajet.cpp
 ListeChainee.o : ListeChainee.cpp
 
 	g++ -c -ansi -pedantic -Wall -std=c++11 ListeChainee.cpp
+
+debug :
+
+	g++ -std=c++11 -g3 -o debug mainTest.cpp TrajetSimple.cpp ElemTrajet.cpp ListeChainee.cpp
+

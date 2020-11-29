@@ -30,6 +30,12 @@ using namespace std;
 //} //----- Fin de Méthode
 //
 //
+//
+
+void ElemTrajet::AfficheTrajet() const
+{
+	traj -> AfficheTrajet();
+}
 
 void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
 {
@@ -66,16 +72,16 @@ ElemTrajet::ElemTrajet ( const ElemTrajet & unElemTrajet )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ElemTrajet::ElemTrajet (const Trajet & unTrajet )
+ElemTrajet::ElemTrajet (Trajet * unTrajet )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ElemTrajet>" << endl;
 #endif
-	
+    	
 	trajSuivant = new ElemTrajet;
-	*traj = unTrajet;
+	traj = unTrajet;
 
 } //----- Fin de ElemTrajet
 
@@ -90,7 +96,6 @@ ElemTrajet::~ElemTrajet ( )
 
 	if (HasNext( ))
 	{
-		delete traj;
 		delete trajSuivant;
 	}
 

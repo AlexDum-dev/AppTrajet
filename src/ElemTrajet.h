@@ -40,7 +40,8 @@ public:
     ElemTrajet * GetNext();
 
     Trajet * GetTraj();
-
+    
+    void AfficheTrajet() const;
 		
 //------------------------------------------------- Surcharge d'opérateurs
     ElemTrajet & operator = ( const ElemTrajet & unElemTrajet );
@@ -57,7 +58,7 @@ public:
     // Contrat :
     //
 
-    ElemTrajet (const Trajet & unTrajet);
+    ElemTrajet (Trajet * unTrajet);
     // Mode d'emploi :
     //
     // Contrat :

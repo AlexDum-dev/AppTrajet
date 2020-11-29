@@ -37,8 +37,8 @@ public:
     //
     //
 
-    void AfficheListe();
-    void AjouterTrajet(const Trajet & unTrajet);
+    void AfficheListe() const;
+    void AjouterTrajet(Trajet * unTrajet);
     // Mode d'emploi : 
     // Appel de la méthode à partir d'un instance de ListeChainee en passant en paramètre un objet de type Trajet
     // Contrat : 
@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    ListeChainee(const Trajet & unTrajet);
+    ListeChainee(Trajet * unTrajet);
     // Mode d'emploi :
     //
     // Contrat :

@@ -24,12 +24,20 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void ListeChainee::AfficheListe()
+void ListeChainee::AfficheListe() const 
+// Algorithme : parcours la liste avec un pointeur et affiche le trajet
 {
-	firstElem -> GetTraj() -> AfficheTrajet(); 
-	//lastElem -> GetTraj() -> AfficheTrajet();
+	ElemTrajet * tmp;
+	tmp = firstElem;
+	while(tmp != lastElem)
+	{
+		tmp -> GetTraj() -> AfficheTrajet();
+		tmp = tmp -> GetNext();
+	} 
+	lastElem -> GetTraj() -> AfficheTrajet();
 }
-void ListeChainee::AjouterTrajet(const Trajet & unTrajet)
+
+void ListeChainee::AjouterTrajet(Trajet * unTrajet)
 //Algorithme : On créé un nouvel élement, on fait pointer le suivant du dernier élément sur ce nouvel élément
 //ce qui raccorde la chaine puis on fait pointer le dernier élément sur ce nouvel élément.
 {
@@ -59,14 +67,13 @@ ListeChainee::ListeChainee ( const ListeChainee & uneListeChainee )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ListeChainee::ListeChainee (const Trajet & unTrajet)
+ListeChainee::ListeChainee (Trajet * unTrajet)
 // Algorithme :
 //
 {
 	firstElem = new ElemTrajet(unTrajet);
 
-	(firstElem -> GetTraj()).AfficheTrajet(); //-> AfficheTrajet();
-	//lastElem = firstElem;
+	lastElem = firstElem;
 
 	
 #ifdef MAP
