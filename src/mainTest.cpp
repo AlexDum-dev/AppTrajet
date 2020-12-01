@@ -5,6 +5,7 @@
 #include"Trajet.h"
 #include"ListeChainee.h"
 #include"ElemTrajet.h"
+#include"TrajetCompose.h"
 using namespace std;
 
 int main()
@@ -21,11 +22,17 @@ int main()
 	traj2 = new TrajetSimple(va, vd, mt);
 	//traj2 -> AfficheTrajet();
 	
+	/*
 	//Liste de de trajets : 
 	ListeChainee list(traj);
 	list.AjouterTrajet(traj2);
 	list.AjouterTrajet(traj);
 	list.AfficheListe();
+	*/
 
+	TrajetCompose * trajCompo;
+	trajCompo = new TrajetCompose(traj);
+	trajCompo -> AjouteTrajet(traj2);
+	trajCompo -> AfficheTrajet();
 	return 0;
 }
