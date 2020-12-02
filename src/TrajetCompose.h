@@ -6,26 +6,28 @@
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <ListeChainee> (fichier ListeChainee.h) ----------------
-#if ! defined ( LISTECHAINEE_H )
-#define LISTECHAINEE_H
+//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
+#if ! defined ( TRAJETCOMPOSE_H )
+#define TRAJETCOMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "ElemTrajet.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
+#include "ListeChainee.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <listeChainee>
-//Implémentation d'une liste chainée
+// Rôle de la classe <TrajetCompose>
+//Implémentation d'un trajet composé. Un trajet simple est une suite de trajet composé.
 //
 //------------------------------------------------------------------------
 
-class ListeChainee
+class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
+
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -33,53 +35,53 @@ public:
     //
     // Contrat :
     //
-    //
-    //
-    //
     
-	
-    ElemTrajet * GetFirstElem();
+   void AfficheTrajet() const;
+   // Mode d'emploi : 
+   //
+   // Contrat  :
+   //
 
-    void AfficheListe() const;
-    void AjouterTrajet(Trajet * unTrajet);
-    // Mode d'emploi : 
-    // Appel de la méthode à partir d'un instance de ListeChainee en passant en paramètre un objet de type Trajet
-    // Contrat : 
+   void AjouteTrajet(Trajet * unTrajet);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ListeChainee & operator = ( const ListeChainee & uneChaine );
+    //Xxx & operator = ( const Xxx & unXxx );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+
 //-------------------------------------------- Constructeurs - destructeur
-    ListeChainee ( const ListeChainee & uneChaine );
+    //Xxx ( const Xxx & unXxx );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ListeChainee(Trajet * unTrajet);
+    TrajetCompose (Trajet * unTrajet);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~ListeChainee( );
+    virtual ~TrajetCompose ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+//------------------------------------------------------------------ PRIVE
 
 protected:
+//----------------------------------------------------- Méthodes protégées
+	ListeChainee * listeTrajets;
 //----------------------------------------------------- Attributs protégés
-ElemTrajet * firstElem;
-ElemTrajet * lastElem;
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
-#endif // LISTECHAINEE_H
+#endif // XXX_H
 

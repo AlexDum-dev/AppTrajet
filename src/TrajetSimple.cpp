@@ -99,7 +99,7 @@ void TrajetSimple::AfficheTrajet() const
 //Algorithme : test
 //
 {
-	cout << "de ";
+	cout << "De ";
 	for(unsigned int i=0;i<strlen(villeDepart);i++)
 	{
 		cout << villeDepart[i];
@@ -114,7 +114,7 @@ void TrajetSimple::AfficheTrajet() const
         {
                 cout << moyDeTransport[k];
         }
-	cout << endl;
+	cout << " ";
 }
 
 	

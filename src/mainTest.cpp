@@ -6,6 +6,7 @@
 #include"ListeChainee.h"
 #include"ElemTrajet.h"
 #include"TrajetCompose.h"
+#include"Catalogue.h"
 using namespace std;
 
 int main()
@@ -33,6 +34,13 @@ int main()
 	TrajetCompose * trajCompo;
 	trajCompo = new TrajetCompose(traj);
 	trajCompo -> AjouteTrajet(traj2);
-	trajCompo -> AfficheTrajet();
+	//trajCompo -> AfficheTrajet();
+	
+	Catalogue * catalogue;
+	catalogue = new Catalogue(traj);
+	catalogue -> AjouteTrajet(traj2);
+	catalogue -> AjouteTrajet(trajCompo);
+	catalogue -> AfficheCatalogue();
+
 	return 0;
 }

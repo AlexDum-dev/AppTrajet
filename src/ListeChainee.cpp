@@ -24,6 +24,11 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+ElemTrajet * ListeChainee::GetFirstElem()
+{
+	return firstElem;
+}
+
 void ListeChainee::AfficheListe() const 
 // Algorithme : parcours la liste avec un pointeur et affiche le trajet
 {

@@ -18,6 +18,8 @@ using namespace std;
 #include "TrajetCompose.h"
 #include "ListeChainee.h"
 #include "Trajet.h"
+#include "ElemTrajet.h"
+
 
 //------------------------------------------------------------- Constantes
 
@@ -33,7 +35,17 @@ using namespace std;
 void TrajetCompose::AfficheTrajet() const 
 //Algorithme : 
 {
-	listeTrajets -> AfficheListe();
+	//listeTrajets -> AfficheListe();
+	ElemTrajet * tmp;
+        tmp = listeTrajets -> GetFirstElem();
+        while(tmp != nullptr)
+        {
+		cout << "- ";
+                tmp -> GetTraj() -> AfficheTrajet();
+                tmp = tmp -> GetNext();
+        }
+        //lastElem -> GetTraj() -> AfficheTrajet();
+	cout << endl;
 }
 
 

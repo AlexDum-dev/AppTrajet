@@ -1,12 +1,12 @@
 /*************************************************************************
-                           ElemTrajet  -  description
+                           Xxx  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <ElemTrajet> (fichier ElemTrajet.cpp) ------------
+//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,9 +15,10 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "ElemTrajet.h"
+#include "Catalogue.h"
 #include "Trajet.h"
-
+#include "ListeChainee.h"
+#include "ElemTrajet.h"
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -28,91 +29,68 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-//
-//
-//
 
-void ElemTrajet::AfficheTrajet() const
+void Catalogue::AjouteTrajet(Trajet * unTrajet)
+//Algorithme :
 {
-	traj -> AfficheTrajet();
+	listeTrajets -> AjouterTrajet(unTrajet);
 }
 
-void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
+void Catalogue::AfficheCatalogue() const
+//Algorithme
 {
-	trajSuivant = ptrElemTrajet; //on fait pointer le trajet suivant sur un trajet passé en paramètre
+        ElemTrajet * tmp;
+        tmp = listeTrajets -> GetFirstElem();
+        while(tmp != nullptr)
+        {       
+                tmp -> GetTraj() -> AfficheTrajet();
+                tmp = tmp -> GetNext();
+                cout << endl;
+        }
 }
 
-ElemTrajet* ElemTrajet::GetNext()
-{
-	return trajSuivant;
-}
-
-Trajet * ElemTrajet::GetTraj()
-{
-	return traj;
-}
 //------------------------------------------------- Surcharge d'opérateurs
-/*
-Xxx & Xxx::operator = ( const Xxx & unXxx )
+//Xxx & Xxx::operator = ( const Xxx & unXxx )
 // Algorithme :
 //
-{
-} //----- Fin de operator =
-*/
+//{
+//} //----- Fin de operator =
+
 
 //-------------------------------------------- Constructeurs - destructeur
-ElemTrajet::ElemTrajet ( const ElemTrajet & unElemTrajet )
+//Xxx::Xxx ( const Xxx & unXxx )
+// Algorithme :
+//
+//{
+//#ifdef MAP
+//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+//#endif
+//} //----- Fin de Xxx (constructeur de copie)
+
+
+Catalogue::Catalogue (Trajet * unTrajet)
 // Algorithme :
 //
 {
+	listeTrajets = new ListeChainee(unTrajet);
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <ElemTrajet>" << endl;
+    cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+} //----- Fin de Catalogue
 
-} //----- Fin de Xxx (constructeur de copie)
 
-
-ElemTrajet::ElemTrajet (Trajet * unTrajet )
+Catalogue::~Catalogue ( )
 // Algorithme :
 //
 {
+	delete listeTrajets;
 #ifdef MAP
-    cout << "Appel au constructeur de <ElemTrajet>" << endl;
+    cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-    	
-	trajSuivant = new ElemTrajet;
-	trajSuivant = nullptr;
-	traj = unTrajet;
-
-} //----- Fin de ElemTrajet
-
-
-ElemTrajet::~ElemTrajet ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <ElemTrajet>" << endl;
-#endif
-
-	if (HasNext( ))
-	{
-		delete trajSuivant;
-	}
-
-} //----- Fin de ~Xxx
+} //----- Fin de ~Catalogue
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
-bool ElemTrajet::HasNext ( )
-{
-	if (trajSuivant == nullptr)
-	{
-		return false;
-	}
-	return true;
-}
 

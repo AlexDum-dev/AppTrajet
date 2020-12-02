@@ -6,26 +6,27 @@
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <ListeChainee> (fichier ListeChainee.h) ----------------
-#if ! defined ( LISTECHAINEE_H )
-#define LISTECHAINEE_H
+//---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
+#if ! defined ( CATALOGUE_H )
+#define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "ElemTrajet.h"
 #include "Trajet.h"
+#include "ListeChainee.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <listeChainee>
-//Implémentation d'une liste chainée
+// Rôle de la classe <Xxx>
+//
 //
 //------------------------------------------------------------------------
 
-class ListeChainee
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
+
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -34,52 +35,57 @@ public:
     // Contrat :
     //
     //
+
+    void AfficheCatalogue() const;
+    //Mode d'emploi : 
     //
+    //Contrat : 
     //
     
-	
-    ElemTrajet * GetFirstElem();
-
-    void AfficheListe() const;
-    void AjouterTrajet(Trajet * unTrajet);
+    void AjouteTrajet(Trajet * unTrajet);
     // Mode d'emploi : 
-    // Appel de la méthode à partir d'un instance de ListeChainee en passant en paramètre un objet de type Trajet
+    //
     // Contrat : 
+    //
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ListeChainee & operator = ( const ListeChainee & uneChaine );
+    //Xxx & operator = ( const Xxx & unXxx );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+
 //-------------------------------------------- Constructeurs - destructeur
-    ListeChainee ( const ListeChainee & uneChaine );
+    //Xxx ( const Xxx & unXxx );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ListeChainee(Trajet * unTrajet);
+    Catalogue (Trajet * unTrajet);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~ListeChainee( );
+    virtual ~Catalogue ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+//------------------------------------------------------------------ PRIVE
 
 protected:
+//----------------------------------------------------- Méthodes protégées
+	ListeChainee * listeTrajets;
 //----------------------------------------------------- Attributs protégés
-ElemTrajet * firstElem;
-ElemTrajet * lastElem;
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
-#endif // LISTECHAINEE_H
+#endif // CATALOGUE_H
 
