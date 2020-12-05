@@ -19,6 +19,7 @@ using namespace std;
 #include "Trajet.h"
 #include "ListeChainee.h"
 #include "ElemTrajet.h"
+#include "TrajetSimple.h"
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -33,6 +34,8 @@ using namespace std;
 void Catalogue::AjouteTrajet(Trajet * unTrajet)
 //Algorithme :
 {
+	
+
 	listeTrajets -> AjouterTrajet(unTrajet);
 }
 
