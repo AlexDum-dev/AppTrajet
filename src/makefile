@@ -33,5 +33,5 @@ debug :
 
 clean : 
 
-	rm *.o
+	rm *.o test
 
