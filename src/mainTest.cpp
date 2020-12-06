@@ -152,7 +152,7 @@ int main()
 
 						sousTrajet = new TrajetSimple(vd,va,mdt);
 
-						delete[] vd;
+						strcpy(vd,va);
 						delete[] va;
 						delete[] mdt;
 
@@ -170,17 +170,16 @@ int main()
 
 						while (keep)
 						{
-							vd = new char[40+1];
+							cout << "Pour rappel, le ville d'arrivée était : " << vd << ". C'est donc le départ de ce sous trajet" << endl;
 							va = new char[40+1];
 							mdt = new char[40+1];
 							
-							VilleDepart(vd);
 							VilleArrivee(va);
 							MoyenDeTransport(mdt);
 
 							sousTrajet = new TrajetSimple(vd,va,mdt);
 
-							delete[] vd;
+							strcpy(vd,va);
 							delete[] va;
 							delete[] mdt;
 
@@ -193,7 +192,8 @@ int main()
 								keep = true;
 							}else{keep = false;}
 
-						}		
+						}	
+						delete[] vd;
 
 						catalogue -> AjouteTrajet(trajCompose);
 						break;
