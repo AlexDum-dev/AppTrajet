@@ -211,6 +211,17 @@ int main()
 
                 break;
 			case 'r':
+
+				char * vd = new char[40+1]; 
+				char * va = new char[40+1];
+
+				VilleArrivee(va);
+				VilleDepart(vd);
+
+				catalogue -> RechercheTrajet(va,vd);
+
+				delete[] vd;
+				delete[] va;  
 				
 				break;
             case 'q':
