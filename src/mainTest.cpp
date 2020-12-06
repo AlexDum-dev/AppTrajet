@@ -19,78 +19,33 @@ void ecran()
 }
 
 void VilleDepart(char * vd)
-{		
-	unsigned int compteur = 0;
-	bool encore = true;
-
-	cout << "Veuillez saisir la ville de départ (appuyez sur '0' pour valider): ";
-	char car;
-	while(encore)
-	{
-		cin >> car;
-		if (car == '0')
-		{
-			encore = false;
-			vd[compteur] = '\0';
-		}
-		else
-		{
-			vd[compteur] = car;
-		}
-		compteur++;
-	}
-	cout << endl;
+{	
+	cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+	char * car = new char[40+1];
+	cin >> car;
+	strcpy(vd, car);
+	delete[] car;
 }
 
 
 
 void VilleArrivee(char * va)
-{		
-	unsigned int compteur = 0;
-	bool encore = true;
-	cout << "Veuillez saisir la ville d'arrivée (appuyez sur la touche '0' pour valider): ";
-	
-	while(encore)
-		{
-		char car;
-		cin >> car;
-		if (car == '0')
-		{
-			encore = false;
-			va[compteur] = '\0';
-		}
-		else
-		{
-			va[compteur] = car;
-		}
-		compteur++;
-	}
-	cout << endl;				
+{	
+	cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+	char * car = new char[40+1];
+	cin >> car;
+	strcpy(va, car);
+	delete[] car;			
 }
 
 
 void MoyenDeTransport(char * mdt)
 {		
-	unsigned int compteur = 0;
-	bool encore = true;
-	cout << "Veuillez saisir le moyen de transport (appuyez sur la touche '0' pour valider): ";
-	
-	while(encore)
-		{
-		char car;
-		cin >> car;
-		if (car == '0')
-		{
-			encore = false;
-			mdt[compteur] = '\0';
-		}
-		else
-		{
-			mdt[compteur] = car;
-		}
-		compteur++;
-	}
-	cout << endl;			
+	cout << "Veuillez saisir le moyen de transport (appuyez sur entrée pour valider): ";
+	char * car = new char[40+1];
+	cin >> car;
+	strcpy(mdt, car);
+	delete[] car;
 }
 
 
@@ -139,7 +94,7 @@ int main()
 	
 
 	char commande = 'c';
-	Catalogue * catalogue = new Catalogue();
+	Catalogue * catalogue = new Catalogue(traj);
 	cout << "ok" << endl;
 	while(commande != 'q')
 	{
@@ -247,10 +202,12 @@ int main()
 				
                 break;
             case 'c':
+
+				cout << "Voici le catalogue des trajets :" << endl;
                 catalogue -> AfficheCatalogue();
-				char wait;
-				cout << "Appuyez sur une touche pour revenir en arrière" << endl;
-				cin >> wait;
+				cout << endl;
+				cout << endl;
+
                 break;
 			case 'r':
 				
