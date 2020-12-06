@@ -77,11 +77,11 @@ void TrajetCompose::AjouteTrajet(Trajet * unTrajet)
 //} //----- Fin de Xxx (constructeur de copie)
 
 
-TrajetCompose::TrajetCompose(Trajet * unTrajet )
+TrajetCompose::TrajetCompose()
 // Algorithme :
 //
 {
-	listeTrajets = new ListeChainee(unTrajet);
+	listeTrajets = new ListeChainee();
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif

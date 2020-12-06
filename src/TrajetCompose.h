@@ -60,7 +60,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose (Trajet * unTrajet);
+    TrajetCompose ();
     // Mode d'emploi :
     //
     // Contrat :

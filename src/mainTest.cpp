@@ -94,7 +94,7 @@ int main()
 	
 
 	char commande = 'c';
-	Catalogue * catalogue = new Catalogue(traj);
+	Catalogue * catalogue = new Catalogue();
 	cout << "ok" << endl;
 	while(commande != 'q')
 	{
@@ -156,7 +156,8 @@ int main()
 						delete[] va;
 						delete[] mdt;
 
-						trajCompose = new TrajetCompose(sousTrajet);
+						trajCompose = new TrajetCompose();
+						trajCompose -> AjouteTrajet(sousTrajet);
 
 						cout << "Voulez vous ajouter un sous trajet à ce trajet composé ? 'o' oui, 'n' non" << endl;
 						char ajout;

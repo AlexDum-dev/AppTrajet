@@ -61,7 +61,7 @@ public:
     // Contrat :
     //
 
-    ListeChainee(Trajet * unTrajet);
+    ListeChainee();
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,6 +74,9 @@ public:
     //
 
 protected:
+//----------------------------------------------------- Méthodes Protected
+ 
+    bool isEmpty();
 //----------------------------------------------------- Attributs protégés
 ElemTrajet * firstElem;
 ElemTrajet * lastElem;

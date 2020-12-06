@@ -22,7 +22,16 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
+//----------------------------------------------------- Méthodes protected
+bool ListeChainee::isEmpty()
+{
+	if(firstElem == nullptr)
+	{
+		return true;
+	}
 
+	return false;
+}
 //----------------------------------------------------- Méthodes publiques
 ElemTrajet * ListeChainee::GetFirstElem()
 {
@@ -46,10 +55,16 @@ void ListeChainee::AjouterTrajet(Trajet * unTrajet)
 //Algorithme : On créé un nouvel élement, on fait pointer le suivant du dernier élément sur ce nouvel élément
 //ce qui raccorde la chaine puis on fait pointer le dernier élément sur ce nouvel élément.
 {
-	ElemTrajet *elem;
-	elem = new ElemTrajet(unTrajet);
-	lastElem -> SetNext(elem); 
-	lastElem = elem;
+	if(isEmpty())
+	{
+		firstElem = new ElemTrajet(unTrajet);
+		lastElem = firstElem;
+	} else {
+		ElemTrajet *elem;
+		elem = new ElemTrajet(unTrajet);
+		lastElem -> SetNext(elem); 
+		lastElem = elem;
+	}
 }
 
 
@@ -72,15 +87,12 @@ ListeChainee::ListeChainee ( const ListeChainee & uneListeChainee )
 } //----- Fin de Xxx (constructeur de copie)
 
 
-ListeChainee::ListeChainee (Trajet * unTrajet)
+ListeChainee::ListeChainee ()
 // Algorithme :
 //
 {
-	firstElem = new ElemTrajet(unTrajet);
-
-	lastElem = firstElem;
-
-	
+	firstElem = nullptr;
+	lastElem  = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <ListeChainee>" << endl;
 #endif
@@ -90,9 +102,12 @@ ListeChainee::ListeChainee (Trajet * unTrajet)
 ListeChainee::~ListeChainee ( )
 //
 //
-{	
-	delete firstElem;
-	//delete lastElem;
+{
+	if(firstElem !=nullptr)
+	{
+		delete firstElem;
+		delete lastElem;
+	}
 
 #ifdef MAP
     cout << "Appel au destructeur de <ListeChainee>" << endl;

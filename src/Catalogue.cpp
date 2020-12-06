@@ -34,8 +34,6 @@ using namespace std;
 void Catalogue::AjouteTrajet(Trajet * unTrajet)
 //Algorithme :
 {
-	
-
 	listeTrajets -> AjouterTrajet(unTrajet);
 }
 
@@ -71,11 +69,11 @@ void Catalogue::AfficheCatalogue() const
 //} //----- Fin de Xxx (constructeur de copie)
 
 
-Catalogue::Catalogue (Trajet * unTrajet)
+Catalogue::Catalogue ()
 // Algorithme :
 //
 {
-	listeTrajets = new ListeChainee(unTrajet);
+	listeTrajets = new ListeChainee();
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif

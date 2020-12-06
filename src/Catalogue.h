@@ -64,7 +64,7 @@ public:
     // Contrat :
     //
 
-    Catalogue (Trajet * unTrajet);
+    Catalogue ();
     // Mode d'emploi :
     //
     // Contrat :
