@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "Trajet.h"
@@ -30,6 +30,53 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+//
+
+void Catalogue::RechercheTrajet(char * vd, char *va) const
+//Algorithme :
+{
+        ElemTrajet *tmp;
+        tmp = listeTrajets -> GetFirstElem();
+        char * Ctmp;
+        char * Ctmp2;
+        bool equalArrivee;
+        bool equalDepart;
+        unsigned int i;
+        while(tmp != nullptr)
+        {
+                equalArrivee = true;
+                equalDepart = true;
+                Ctmp = tmp -> GetTraj() -> GetVilleDepart();
+                Ctmp2 = tmp -> GetTraj() -> GetVilleArrivee();
+                i=0;
+                while(i!=strlen(Ctmp) or i != strlen(vd))
+                {
+                        if(Ctmp[i] != vd[i])
+                        {
+                                equalDepart = false;
+                        }
+
+                        if(Ctmp2[i] != va[i])
+                        {
+                                equalArrivee = false;
+                        }
+
+                        i++;
+                }
+
+                if(equalDepart and equalArrivee)
+                {
+                        tmp -> AfficheTrajet();
+			cout << endl;
+                }
+
+
+                tmp = tmp -> GetNext();
+
+        }
+
+}
+
 
 void Catalogue::AjouteTrajet(Trajet * unTrajet)
 //Algorithme :

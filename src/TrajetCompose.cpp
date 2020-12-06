@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
+#include <cstring>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 #include "ListeChainee.h"
@@ -31,6 +31,17 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+//
+
+char * TrajetCompose::GetVilleDepart()
+{
+	return villeDepart;
+}
+
+char * TrajetCompose::GetVilleArrivee()
+{
+	return villeArrivee;
+}
 
 void TrajetCompose::AfficheTrajet() const 
 //Algorithme : 
@@ -51,7 +62,14 @@ void TrajetCompose::AfficheTrajet() const
 
 void TrajetCompose::AjouteTrajet(Trajet * unTrajet)
 // Algorithme
-{
+{	
+	if(villeDepart == nullptr)
+	{
+		villeDepart = new char[40+1];
+		strcpy(villeDepart,unTrajet -> GetVilleDepart());
+
+	}
+	strcpy(villeArrivee, unTrajet -> GetVilleArrivee());
 	listeTrajets -> AjouterTrajet(unTrajet);
 }
 
@@ -82,6 +100,8 @@ TrajetCompose::TrajetCompose()
 //
 {
 	listeTrajets = new ListeChainee();
+	villeArrivee = new char[40+1];
+	villeDepart = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
@@ -93,6 +113,8 @@ TrajetCompose::~TrajetCompose ( )
 //
 {
 	delete listeTrajets;
+	delete [] villeArrivee;
+	delete [] villeDepart;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif

@@ -35,6 +35,18 @@ public:
     //
     // Contrat :
     //
+
+   char * GetVilleDepart();
+   // Mode d'emploi : 
+   //
+   // Contrat : 
+   //
+
+   char * GetVilleArrivee();
+   //Mode d'emploi : 
+   //
+   //Contrat : 
+   //
     
    void AfficheTrajet() const;
    // Mode d'emploi : 
@@ -76,7 +88,9 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	ListeChainee * listeTrajets;
+    char * villeDepart;
+    char * villeArrivee;
+    ListeChainee * listeTrajets;
 //----------------------------------------------------- Attributs protégés
 
 };

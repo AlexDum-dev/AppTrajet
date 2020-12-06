@@ -36,6 +36,13 @@ public:
     //
     //
 
+    void RechercheTrajet(char * vd, char * va) const;
+    //Mode d'emploi : 
+    //
+    //Contrat 
+    //
+
+
     void AfficheCatalogue() const;
     //Mode d'emploi : 
     //
