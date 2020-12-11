@@ -18,8 +18,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe TrajetSimple
-//Hérite de la classe trajet 
-//Possède une ville de départ, une ville d'arrivée et un moyen de transport
+// La classe TrajetSimple hérite de la classe Trajet. 
+// Un TrajetSimple possède une ville de départ, une ville d'arrivée et un moyen de transport
+// sous forme de chaîne de caractère.
 //------------------------------------------------------------------------
 
 class TrajetSimple : public Trajet
@@ -28,39 +29,49 @@ class TrajetSimple : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    
     void AfficheTrajet() const;
+    // Mode d'emploi :
+    // La méthode AfficheTrajet affiche le Trajet. Elle ne doit en aucun cas servir à modifier 
+    // le trajet, d'où le "const".
+    // Contrat : 
+    // Aucun contrat.
 
 	char * GetMoyenTransport ( );
-	char * GetVilleDepart ( );
-	char * GetVilleArrivee ( );
-
-
-    //Mode d'emploi : 
-    //Print sur l'entrée standard la ville de départ et d'arrivée ainsi que le moyen de transport
-    //Contrat : 
-    //
-//------------------------------------------------- Surcharge d'opérateurs
-    //Xxx & operator = ( const Xxx & unXxx );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // La méthode GetMoyenTransport renvoie le moyen de transport utilisé pour ce trajet.
+    // Contrat : 
+    // Aucun contrat.
 
+	char * GetVilleDepart ( );
+    // Mode d'emploi :
+    // La méthode GetVilleDepart renvoie la ville de départ du trajet.
+    // Contrat : 
+    // Aucun contrat.
+
+	char * GetVilleArrivee ( );
+    // Mode d'emploi :
+    // La méthode GetMoyenTransport renvoie la ville d'arrivée du trajet.
+    // Contrat : 
+    // Aucun contrat.
+
+//------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-    //Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     TrajetSimple(char * villeD, char * villeA, char * moyDeT);
     // Mode d'emploi : 
     // Initialise un trajet avec une ville de départ, une ville d'arrivée et un moyen de transport
+    // passé en paramètre
     // Contrat :
-    //
+    // Aucun contrat.
 
     virtual ~TrajetSimple( );
+    // Mode d'emploi : 
+    // Détruit le TrajetSimple invoquant la méthode en supprimant la 
+    // mémoire allouée.
+    // Contrat :
+    // Aucun contrat.
 
 //------------------------------------------------------------------ PRIVE
 
@@ -68,11 +79,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-char *villeDepart;
-char *villeArrivee;
-char *moyDeTransport;
-};
+    char *villeDepart;
+    char *villeArrivee;
+    char *moyDeTransport;
 
+};
 //-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJETSIMPLE_H

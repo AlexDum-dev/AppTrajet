@@ -24,79 +24,49 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type TrajetSimple::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
 char * TrajetSimple::GetMoyenTransport ( )
+// Algorithme :
+// Renvoie l'attribut protégé moyDeTransport.
 {
 	return moyDeTransport;
-}
+}//----- Fin de GetMoyenTransport
 
 char * TrajetSimple::GetVilleDepart ( )
+// Algorithme :
+// Renvoie l'attribut protégé villeDepart.
 {
 	return villeDepart;
-}
+}//----- Fin de GetVilleDepart
 
 char * TrajetSimple::GetVilleArrivee ( )
+// Algorithme :
+// Renvoie l'attribut protégé villeArrivee.
 {
 	return villeArrivee;
-}
-
-//------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-//Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-//#endif
-//} //----- Fin de Xxx (constructeur de copie)
-
-
-TrajetSimple::TrajetSimple (char *villeD, char *villeA, char *moyDeT)
-{
-// Algortihme :
-// Déclaration dynamique des attributs avec la longueur des paramètres +1 qui est lié au caractère '\0'
-// Puis copie avec la fonction strcpy(destination, source)
-//
-	villeDepart = new char[strlen(villeD)+1];
-	villeArrivee = new char[strlen(villeA)+1];
-	moyDeTransport = new char[strlen(moyDeT)+1];
-	
-	strcpy(villeDepart, villeD);
-	strcpy(villeArrivee, villeA);
-	strcpy(moyDeTransport, moyDeT);
-#ifdef MAP
-    cout << "Appel au constructeur de TrajetSimple" << endl;
-#endif
-} //----- Fin de TrajetSimple
-
-
-TrajetSimple::~TrajetSimple (void)
-// Algorithme :
-//
-{
-	delete [] villeDepart;
-	delete [] villeArrivee;
-	delete [] moyDeTransport;
-#ifdef MAP
-    cout << "Appel au destructeur de TrajetSimple" << endl;
-#endif
-} //----- Fin de ~TrajetSimple
+}//----- Fin de GetVilleArrivee
 
 void TrajetSimple::AfficheTrajet() const 
-//Algorithme : test
+// Algorithme : 
+// Début :
+	// Affiche("De");
+	// Pour i allant de 0 à taille(villeDepart) faire :
+	//     Affiche(villeDepart[i]);
+	// Fin pour
+	// Affiche(" à ");
+	// Pour i allant de 0 à taille(villeArrivee) faire :
+	//     affiche(villeArrivee[i]);
+	// Fin pour
+	// Affiche(" en ");
+	// Pour i allant de 0 à taille(moyDeTransport) faire :
+	//     affiche(moyDeTransport[i]);
+	// Fin pour
+// Fin
 //
 {
 	cout << "De ";
@@ -115,7 +85,43 @@ void TrajetSimple::AfficheTrajet() const
                 cout << moyDeTransport[k];
         }
 	cout << " ";
-}
+}//----- Fin de AfficheTrajet
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+
+TrajetSimple::TrajetSimple (char *villeD, char *villeA, char *moyDeT)
+{
+// Algortihme :
+// On déclare dynamiquement les attributs avec la longueur des paramètres +1 qui est 
+// lié au caractère '\0', puis on copie avec la fonction strcpy(destination, source)
+//
+	villeDepart = new char[strlen(villeD)+1];
+	villeArrivee = new char[strlen(villeA)+1];
+	moyDeTransport = new char[strlen(moyDeT)+1];
+	
+	strcpy(villeDepart, villeD);
+	strcpy(villeArrivee, villeA);
+	strcpy(moyDeTransport, moyDeT);
+#ifdef MAP
+    cout << "Appel au constructeur de TrajetSimple" << endl;
+#endif
+} //----- Fin de TrajetSimple
+
+
+TrajetSimple::~TrajetSimple (void)
+// Algorithme :
+// On supprime la mémoire allouée à chaque chaîne de caractère.
+//
+{
+	delete [] villeDepart;
+	delete [] villeArrivee;
+	delete [] moyDeTransport;
+#ifdef MAP
+    cout << "Appel au destructeur de TrajetSimple" << endl;
+#endif
+} //----- Fin de ~TrajetSimple
 
 	
 //------------------------------------------------------------------ PRIVE
