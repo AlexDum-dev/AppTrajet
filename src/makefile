@@ -12,11 +12,11 @@ TrajetSimple.o : TrajetSimple.cpp
 
 ElemTrajet.o : ElemTrajet.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 ElemTrajet.cpp
+	g++ -c -DMAP -ansi -pedantic -Wall -std=c++11 ElemTrajet.cpp
 
 ListeChainee.o : ListeChainee.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 ListeChainee.cpp
+	g++ -c -DMAP -ansi -pedantic -Wall -std=c++11 ListeChainee.cpp
 
 TrajetCompose.o : TrajetCompose.cpp
 
@@ -29,9 +29,9 @@ Catalogue.o : Catalogue.cpp
 
 debug :
 
-	g++ -std=c++11 -g3 -o debug mainTest.cpp TrajetSimple.cpp ElemTrajet.cpp ListeChainee.cpp TrajetCompose.cpp
+	g++ -std=c++11 -g3 -o debug mainTest.cpp TrajetSimple.cpp ElemTrajet.cpp ListeChainee.cpp TrajetCompose.cpp Catalogue.cpp
 
 clean : 
 
-	rm *.o test
+	rm *.o test debug 
 

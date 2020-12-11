@@ -55,44 +55,64 @@ void MoyenDeTransport(char * mdt)
 int main()
 {
 	
-	
+	/*	
 	// Création de deux trajets 
 	char vd1[2+1] = {'P','a', '\0'};
 	char va1[2+1] = {'M', 'a','\0'};
 	char mt1[2+1] = {'V', 'e', '\0'};
 	Trajet * traj; 
-    traj = new TrajetSimple(vd1,va1,mt1);
+    	traj = new TrajetSimple(vd1,va1,mt1);
 	//traj -> AfficheTrajet();
 	
-	//Trajet * traj2;
-	//traj2 = new TrajetSimple(va, vd, mt);
+	
+	//ElemTrajet * elem;
+	//ElemTrajet * elem2;
+	//elem2 = new ElemTrajet(traj);
+	//elem = new ElemTrajet(traj);
+	//elem -> SetNext(elem2);
+	//delete elem;
+	
+	Trajet * traj2;
+	traj2 = new TrajetSimple(va1, vd1, mt1);
 	//traj2 -> AfficheTrajet();
 
-	/*	
+		
 	
 	//Liste de de trajets : 
-	ListeChainee list(traj);
-	list.AjouterTrajet(traj2);
-	list.AjouterTrajet(traj);
-	list.AfficheListe();
+	ListeChainee * list;
+	list = new ListeChainee();
+	list -> AjouterTrajet(traj);
+	list -> AjouterTrajet(traj2);
+	list -> AfficheListe();
+	delete list;
+	//list.AjouterTrajet(traj);
+	//list.AfficheListe();
 	
-
+	
+		
 	TrajetCompose * trajCompo;
-	trajCompo = new TrajetCompose(traj);
+	trajCompo = new TrajetCompose();
+	trajCompo -> AjouteTrajet(traj);
 	trajCompo -> AjouteTrajet(traj2);
 	//trajCompo -> AfficheTrajet();
 	
 	Catalogue * catalogue;
-	catalogue = new Catalogue(traj);
-	catalogue -> AjouteTrajet(traj2);
-	catalogue -> AjouteTrajet(trajCompo);
+	catalogue = new Catalogue();
+	//catalogue -> AjouteTrajet(traj);
+	//catalogue -> AjouteTrajet(traj2);
+	//catalogue -> AjouteTrajet(trajCompo);
 	catalogue -> AfficheCatalogue();
 	
+	delete traj;
+	delete traj2;
+	delete catalogue;
+	delete trajCompo;
+
 	*/
 
 	//Menu
 	
-
+	
 	char commande = 'c';
 	Catalogue * catalogue = new Catalogue();
 	cout << "ok" << endl;
@@ -231,9 +251,9 @@ int main()
 				cout << "Erreur sur l'entrée: veuillez saisir un caractère valide " << endl;
 				break;
         }
-    }
 
 	
-
+    }	
+	delete catalogue;
 	return 0;
 }

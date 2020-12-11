@@ -80,7 +80,7 @@ ElemTrajet::ElemTrajet (Trajet * unTrajet )
     cout << "Appel au constructeur de <ElemTrajet>" << endl;
 #endif
     	
-	trajSuivant = new ElemTrajet;
+	//trajSuivant = new ElemTrajet;
 	trajSuivant = nullptr;
 	traj = unTrajet;
 

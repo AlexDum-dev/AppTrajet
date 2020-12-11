@@ -60,39 +60,20 @@ void ListeChainee::AjouterTrajet(Trajet * unTrajet)
 		firstElem = new ElemTrajet(unTrajet);
 		lastElem = firstElem;
 	} else {
-		ElemTrajet *elem;
+		ElemTrajet * elem;
 		elem = new ElemTrajet(unTrajet);
-		lastElem -> SetNext(elem); 
-		lastElem = elem;
+		lastElem -> SetNext(elem);
+	        lastElem = elem;	
 	}
 }
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-ListeChainee & ListeChainee::operator = ( const ListeChainee & uneListechainee)
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-ListeChainee::ListeChainee ( const ListeChainee & uneListeChainee )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-#endif
-} //----- Fin de Xxx (constructeur de copie)
-
-
+//------------------------------------------- Constructeur - Destructeur
 ListeChainee::ListeChainee ()
 // Algorithme :
 //
 {
 	firstElem = nullptr;
-	lastElem  = nullptr;
+	//lastElem  = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <ListeChainee>" << endl;
 #endif
@@ -106,7 +87,7 @@ ListeChainee::~ListeChainee ( )
 	if(firstElem !=nullptr)
 	{
 		delete firstElem;
-		delete lastElem;
+		//delete lastElem;
 	}
 
 #ifdef MAP
