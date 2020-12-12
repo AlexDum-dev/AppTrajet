@@ -23,54 +23,41 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-//
-//
-//
 
 void ElemTrajet::AfficheTrajet() const
+// Algorithme :
+// Affiche le trajet de l'élément invoquant la méthode AfficheTrajet
+// de la classe Trajet.
+//
 {
 	traj -> AfficheTrajet();
-}
+}//----- Fin de AfficheTrajet
 
 void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
+// Algorithme :
+// On fait pointer l'attribut trajSuivant de l'objet invoquant la méthode
+// sur l'ElemTrajet passé en paramètre.
 {
 	trajSuivant = ptrElemTrajet; //on fait pointer le trajet suivant sur un trajet passé en paramètre
-}
+}//----- Fin de SetNext
 
 ElemTrajet* ElemTrajet::GetNext()
+// Algorithme :
+// Renvoie l'attribut trajSuivant de l'objet invoquant la méthode.
 {
 	return trajSuivant;
-}
+}//----- Fin de GetNext
 
 Trajet * ElemTrajet::GetTraj()
+// Algorithme :
+// Renvoie l'attribut traj de l'objet invoquant la méthode.
 {
 	return traj;
-}
+}//----- Fin de GetTraj
+
 //------------------------------------------------- Surcharge d'opérateurs
-/*
-Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-*/
 
 //-------------------------------------------- Constructeurs - destructeur
-ElemTrajet::ElemTrajet ( const ElemTrajet & unElemTrajet )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <ElemTrajet>" << endl;
-#endif
-
-} //----- Fin de Xxx (constructeur de copie)
-
 
 ElemTrajet::ElemTrajet (Trajet * unTrajet )
 // Algorithme :
@@ -79,8 +66,7 @@ ElemTrajet::ElemTrajet (Trajet * unTrajet )
 #ifdef MAP
     cout << "Appel au constructeur de <ElemTrajet>" << endl;
 #endif
-    	
-	//trajSuivant = new ElemTrajet;
+
 	trajSuivant = nullptr;
 	traj = unTrajet;
 
@@ -89,18 +75,23 @@ ElemTrajet::ElemTrajet (Trajet * unTrajet )
 
 ElemTrajet::~ElemTrajet ( )
 // Algorithme :
-//
+// Début :
+	// Supprime(traj)
+	// Si il y a un trajet suivant: 
+	//     le détruit en faisant appel à ce destructeur;
+	// Fin si
+// Fin.
 {
 #ifdef MAP
     cout << "Appel au destructeur de <ElemTrajet>" << endl;
 #endif
-
+	delete traj;
 	if (HasNext( ))
 	{
 		delete trajSuivant;
 	}
 
-} //----- Fin de ~Xxx
+} //----- Fin de ~ElemTrajet
 
 
 //------------------------------------------------------------------ PRIVE
@@ -108,6 +99,14 @@ ElemTrajet::~ElemTrajet ( )
 //----------------------------------------------------- Méthodes protégées
 
 bool ElemTrajet::HasNext ( )
+// Algorithme :
+// Début :
+	// Si il y a un trajet suivant :
+	//     Renvoie vrai;
+	// Sinon
+	//     Renvoie faux;
+	// Fin si
+// Fin.
 {
 	if (trajSuivant == nullptr)
 	{

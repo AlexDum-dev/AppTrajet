@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Xxx  -  description
+                           ListeChainee  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
@@ -18,9 +18,11 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <listeChainee>
-//Implémentation d'une liste chainée
-//
+// Rôle de la classe <ListeChainee>
+// La classe ListeChainee contient deux pointeurs sur ElemTrajet, un pointant 
+// sur le "début" de la liste et l'autre pointant sur la "fin". Grâce à ces
+// deux pointeurs, on peut manipuler une liste chaînée d'ElemTrajet.
+// 
 //------------------------------------------------------------------------
 
 class ListeChainee
@@ -28,61 +30,58 @@ class ListeChainee
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    //
-    //
-    //
-    
 	
-    ElemTrajet * GetFirstElem();
+    ElemTrajet * GetFirstElem ( ); 
+    // Mode d'emploi :
+    // La méthode renvoie firstElem, cela servira aux classes utilisant 
+    // ListeChainee.
+    // Contrat :
+    // Aucun contrat.
 
-    void AfficheListe() const;
-    void AjouterTrajet(Trajet * unTrajet);
+    void AfficheListe ( ) const;
+    // Mode d'emploi :
+    // Affiche l'ensemble des trajets de la liste.
+    // Contrat :
+    // Aucun contrat.
+
+    void AjouterTrajet ( Trajet * unTrajet );
     // Mode d'emploi : 
-    // Appel de la méthode à partir d'un instance de ListeChainee en passant en paramètre un objet de type Trajet
+    // Permet d'ajouter à la liste le trajet passé en paramètre
+    // (via un pointeur de Trajet).
     // Contrat : 
+    // Aucun contrat.
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    ListeChainee & operator = ( const ListeChainee & uneChaine );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //-------------------------------------------- Constructeurs - destructeur
-    ListeChainee ( const ListeChainee & uneChaine );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    ListeChainee();
+    ListeChainee ( );
     // Mode d'emploi :
-    //
+    // Construit une ListeChainee vide.
     // Contrat :
-    //
+    // Aucun contrat.
 
-    virtual ~ListeChainee( );
+    virtual ~ListeChainee ( );
     // Mode d'emploi :
-    //
+    // Détruit la ListeChainee invoquant la méthode.
     // Contrat :
-    //
+    // Aucun contrat.
 
 protected:
-//----------------------------------------------------- Méthodes Protected
+//----------------------------------------------------- Méthodes protégées
  
     bool isEmpty();
+    // Renvoie vrai si la ListeChainee est vide, faux sinon.
+
 //----------------------------------------------------- Attributs protégés
-ElemTrajet * firstElem;
-ElemTrajet * lastElem;
+
+    ElemTrajet * firstElem;
+    ElemTrajet * lastElem;
+    
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <ListeChainee>
 
 #endif // LISTECHAINEE_H
 

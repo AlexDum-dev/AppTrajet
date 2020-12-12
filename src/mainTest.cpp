@@ -9,48 +9,14 @@
 #include"Catalogue.h"
 using namespace std;
 
-void ecran()
+void ecran ( )
 {
-	//system("cls");
+	cout << endl;
 	cout << "'a' pour ajouter un trajet" << endl;
 	cout << "'c' pour afficher le catalogue" << endl;
 	cout << "'r' pour rechercher un trajet" << endl;
 	cout << "'q' pour quitter" << endl;
 }
-
-void VilleDepart(char * vd)
-{	
-	cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
-	char * car = new char[40+1];
-	cin >> car;
-	strcpy(vd, car);
-	delete[] car;
-}
-
-
-
-void VilleArrivee(char * va)
-{	
-	cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
-	char * car = new char[40+1];
-	cin >> car;
-	strcpy(va, car);
-	delete[] car;			
-}
-
-
-void MoyenDeTransport(char * mdt)
-{		
-	cout << "Veuillez saisir le moyen de transport (appuyez sur entrée pour valider): ";
-	char * car = new char[40+1];
-	cin >> car;
-	strcpy(mdt, car);
-	delete[] car;
-}
-
-
-
-
 
 int main()
 {
@@ -111,19 +77,17 @@ int main()
 	*/
 
 	//Menu
-	
-	
+
 	char commande = 'c';
 	Catalogue * catalogue = new Catalogue();
-	cout << "ok" << endl;
 	while(commande != 'q')
 	{
-        //system("cls");
 		ecran();
         cin >> commande;
-		char * vd = new char[40+1];
-		char * va = new char[40+1];
-		char * mdt = new char[40+1];
+		char * vd;
+		char * va;
+		char * mdt;
+		char car[100];
         switch(commande)
 		{
             case 'a':
@@ -133,46 +97,71 @@ int main()
 				cout << " - '2' pour un trajet composé " << endl;
 				cout << " - autre touche pour annuler " << endl;
 				cin >> type;
-				Trajet * unTrajet;
 				switch(type)
 				{
 					case '1':
 
-					//On instancie un TrajetSimple qu'on ajoutera à la fin du catalogue 	
-
-						vd = new char[40+1];
-						va = new char[40+1];
-						mdt = new char[40+1];
+						//On instancie un TrajetSimple qu'on ajoutera à la fin du catalogue
+						Trajet * unTrajet;
 						
-						VilleDepart(vd);
-						VilleArrivee(va);
-						MoyenDeTransport(mdt);
+						// Entrée de la ville de départ
+						cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+						cin >> car;
+						vd = new char[strlen(car)+1]; 
+						strcpy(vd, car);
+						
+						// Entrée de la ville d'arrivée
+						cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+						cin >> car;
+						va = new char[strlen(car)+1]; 
+						strcpy(va, car);
+
+						// Entrée du moyen de transport
+						cout << "Veuillez saisir le moyen de transport (appuyez sur entrée pour valider): ";
+						cin >> car;
+						mdt = new char[strlen(car)+1]; 
+						strcpy(mdt, car);
 
 						unTrajet = new TrajetSimple(vd,va,mdt);
+						catalogue -> AjouteTrajet(unTrajet);
 
 						delete[] vd;
 						delete[] va;
 						delete[] mdt;
-						catalogue -> AjouteTrajet(unTrajet);
+						
 						break;
 					case '2':
 
-					//On instancie un pointeur sur Trajet. On fait un premier passage comme pour le cas précédent pour initialiser le TrajetCompose avec un TrajetSimple puis on ajoute les suivants à la fin
+						//On instancie un pointeur sur Trajet. On fait un premier passage comme pour le cas précédent pour initialiser le TrajetCompose avec un TrajetSimple puis on ajoute les suivants à la fin
 
 						Trajet * trajCompose;						
 						Trajet * sousTrajet;
-
-						vd = new char[40+1];
-						va = new char[40+1];
-						mdt = new char[40+1];
 						
-						VilleDepart(vd);
-						VilleArrivee(va);
-						MoyenDeTransport(mdt);
+						// Entrée de la ville de départ
+						cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+						cin >> car;
+						vd = new char[strlen(car)+1]; 
+						strcpy(vd, car);
+						
+						// Entrée de la ville d'arrivée
+						cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+						cin >> car;
+						va = new char[strlen(car)+1]; 
+						strcpy(va, car);
+
+						// Entrée du moyen de transport
+						cout << "Veuillez saisir le moyen de transport (appuyez sur entrée pour valider): ";
+						cin >> car;
+						mdt = new char[strlen(car)+1]; 
+						strcpy(mdt, car);
 
 						sousTrajet = new TrajetSimple(vd,va,mdt);
 
+						// Copie de la ville d'arrivée de ce sous trajet dans la ville de départ pour le sous trajet suivant
+						delete[] vd;
+						vd = new char[strlen(va)+1];  
 						strcpy(vd,va);
+
 						delete[] va;
 						delete[] mdt;
 
@@ -191,14 +180,24 @@ int main()
 						while (keep)
 						{
 							cout << "Pour rappel, le ville d'arrivée était : " << vd << ". C'est donc le départ de ce sous trajet" << endl;
-							va = new char[40+1];
-							mdt = new char[40+1];
 							
-							VilleArrivee(va);
-							MoyenDeTransport(mdt);
+							// Entrée de la ville d'arrivée
+							cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+							cin >> car;
+							va = new char[strlen(car)+1]; 
+							strcpy(va, car);
+
+							// Entrée du moyen de transport
+							cout << "Veuillez saisir le moyen de transport (appuyez sur entrée pour valider): ";
+							cin >> car;
+							mdt = new char[strlen(car)+1]; 
+							strcpy(mdt, car);
 
 							sousTrajet = new TrajetSimple(vd,va,mdt);
 
+							// Copie de la ville d'arrivée de ce sous trajet dans la ville de départ pour le sous trajet suivant
+							delete[] vd;
+							vd = new char[strlen(va)+1];  
 							strcpy(vd,va);
 							delete[] va;
 							delete[] mdt;
@@ -227,22 +226,26 @@ int main()
 				cout << "Voici le catalogue des trajets :" << endl;
                 catalogue -> AfficheCatalogue();
 				cout << endl;
-				cout << endl;
 
                 break;
 			case 'r':
 
-				//char * vd = new char[40+1]; 
-				//char * va = new char[40+1];
-
-				VilleDepart(vd);
-				VilleArrivee(va);
-
+				// Entrée de la ville de départ
+				cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+				cin >> car;
+				vd = new char[strlen(car)+1]; 
+				strcpy(vd, car);
+				
+				// Entrée de la ville d'arrivée
+				cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+				cin >> car;
+				va = new char[strlen(car)+1]; 
+				strcpy(va, car);
 
 				catalogue -> RechercheTrajet(vd,va);
 
-				//delete[] vd;
-				//delete[] va;  
+				delete[] vd;
+				delete[] va;  
 				
 				break;
             case 'q':

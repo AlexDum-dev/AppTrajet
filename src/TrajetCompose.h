@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
@@ -20,7 +20,10 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
-//Implémentation d'un trajet composé. Un trajet simple est une suite de trajet composé.
+// La classe TrajetCompose permet de créer des objets constitués de plusieurs
+// trajets, simples ou composés. TrajetCompose hérite de Trajet et peut donc
+// être manipulé de la même façon que TrajetSimple avec un pointeur de 
+// Trajet.
 //
 //------------------------------------------------------------------------
 
@@ -30,72 +33,68 @@ class TrajetCompose : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
-   char * GetVilleDepart();
+   char * GetVilleDepart ( );
    // Mode d'emploi : 
-   //
+   // Cette méthode permet d'avoir accès à l'attribut villeDepart 
+   // de TrajetCompose.
    // Contrat : 
-   //
+   // Aucun contrat.
 
-   char * GetVilleArrivee();
-   //Mode d'emploi : 
-   //
-   //Contrat : 
-   //
-    
-   void AfficheTrajet() const;
+   char * GetVilleArrivee ( );
    // Mode d'emploi : 
-   //
-   // Contrat  :
-   //
+   // Cette méthode permet d'avoir accès à l'attribut villeArrivee 
+   // de TrajetCompose.
+   // Contrat : 
+   // Aucun contrat.
+    
+   void AfficheTrajet ( ) const;
+   // Mode d'emploi : 
+   // Affiche le trajet dans sa globalité, à savoir chaque sous-trajet
+   // composant l'objet invoquant la méthode.
+   // Contrat :
+   // Aucun contrat.
 
-   void AjouteTrajet(Trajet * unTrajet);
+   void AjouteTrajet ( Trajet * unTrajet );
+   // Mode d'emploi : 
+   // La méthode AjouteTrajet permet d'ajouter un sous-trajet au 
+   // TrajetCompose invoquant la méthode. Formellement, la listeTrajets
+   // va contenir en fin de liste un pointeur de Trajet pointant sur 
+   // la même zone pointée par le pointeur passé en paramètre.
+   // Contrat :
+   // Aucun contrat.
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    //Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    //Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
-    TrajetCompose ();
+    TrajetCompose ( );
     // Mode d'emploi :
-    //
+    // Instancie un TrajetCompose vide.
     // Contrat :
-    //
+    // Aucun contrat.
 
     virtual ~TrajetCompose ( );
     // Mode d'emploi :
-    //
+    // Détruit l'objet invoquant la méthode.
     // Contrat :
-    //
+    // Aucun contrat.
 
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
+
+//----------------------------------------------------- Attributs protégés
+
     char * villeDepart;
     char * villeArrivee;
     ListeChainee * listeTrajets;
-//----------------------------------------------------- Attributs protégés
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
 
-#endif // XXX_H
+#endif // TRAJETCOMPOSE_H
 

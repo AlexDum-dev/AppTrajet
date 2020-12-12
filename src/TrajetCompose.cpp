@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Xxx  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
@@ -26,98 +26,92 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-//
 
-char * TrajetCompose::GetVilleDepart()
+char * TrajetCompose::GetVilleDepart ( )
+// Algorithme :
+// Renvoie villeDepart;
 {
 	return villeDepart;
-}
+} //----- Fin de GetVilleDepart
 
-char * TrajetCompose::GetVilleArrivee()
+char * TrajetCompose::GetVilleArrivee ( )
+// Algorithme :
+// Renvoie villeArrivee;
 {
 	return villeArrivee;
-}
+} //----- Fin de GetVilleArrivee
 
-void TrajetCompose::AfficheTrajet() const 
-//Algorithme : 
+void TrajetCompose::AfficheTrajet ( ) const 
+// Algorithme : 
+// Début : 
+// ElemTrajet * tmp;
+// tmp <- pointeur sur le premier élément de listeTrajets;
+// Tant que tmp != nullptr faire :
+//     affiche("- ");
+//     affiche le trajet de tmp;
+//     tmp <- pointeur sur l'ElemTrajet suivant;
+// Fin tant que
+// affiche(retour à la ligne);
+// Fin.
 {
-	//listeTrajets -> AfficheListe();
 	ElemTrajet * tmp;
-        tmp = listeTrajets -> GetFirstElem();
-        while(tmp != nullptr)
-        {
+    tmp = listeTrajets -> GetFirstElem();
+    while(tmp != nullptr)
+    {
 		cout << "- ";
-                tmp -> GetTraj() -> AfficheTrajet();
-                tmp = tmp -> GetNext();
-        }
-        //lastElem -> GetTraj() -> AfficheTrajet();
+        tmp -> GetTraj() -> AfficheTrajet();
+        tmp = tmp -> GetNext();
+    }
 	cout << endl;
-}
+} //----- Fin de AfficheTrajet
 
 
-void TrajetCompose::AjouteTrajet(Trajet * unTrajet)
-// Algorithme
+void TrajetCompose::AjouteTrajet ( Trajet * unTrajet )
+// Algorithme :
+// paramètres : Trajet* unTrajet
+// Début :
+	// Si villeDepart == nullptr faire :
+	//     villeDepart <- ville de départ de unTrajet;
+	// Fin si
+	// villeArrivee <- ville d'arrivée de unTrajet;
+	// Ajouter unTrajet à listeTrajets;
+// Fin.
 {	
 	if(villeDepart == nullptr)
 	{
-		villeDepart = new char[40+1];
-		strcpy(villeDepart,unTrajet -> GetVilleDepart());
-
+		villeDepart = unTrajet -> GetVilleDepart();
 	}
-	strcpy(villeArrivee, unTrajet -> GetVilleArrivee());
+	villeArrivee = unTrajet -> GetVilleArrivee();
 	listeTrajets -> AjouterTrajet(unTrajet);
-}
-
-
-
+} //----- Fin de AjouteTrajet
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :z
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-//#endif
-//} //----- Fin de Xxx (constructeur de copie)
 
-
-TrajetCompose::TrajetCompose()
+TrajetCompose::TrajetCompose ( )
 // Algorithme :
-//
+// allocation mémoire de listeTrajets;
+// villeArrivee = nullptr;
+// villeDepart = nullptr;
 {
-	listeTrajets = new ListeChainee();
-	villeArrivee = new char[40+1];
-	villeDepart = nullptr;
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
+	listeTrajets = new ListeChainee();
+	villeArrivee = nullptr;
+	villeDepart = nullptr;
 } //----- Fin de TrajetCompose
 
 
 TrajetCompose::~TrajetCompose ( )
 // Algorithme :
-//
+// détruit listeTrajets;
 {
-	delete listeTrajets;
-	delete [] villeArrivee;
-	delete [] villeDepart;
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+	delete listeTrajets;
 } //----- Fin de ~TrajetCompose
 
 
