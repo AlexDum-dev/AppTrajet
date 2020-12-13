@@ -99,38 +99,19 @@ void Catalogue::RechercheTrajet(const char * vd, const char *va) const
         tmp = listeTrajets -> GetFirstElem();
         char * Ctmp;
         char * Ctmp2;
-        bool equalArrivee;
-        bool equalDepart;
-        unsigned int i;
         while(tmp != nullptr)
         {
-                equalArrivee = true;
-                equalDepart = true;
                 Ctmp = tmp -> GetTraj() -> GetVilleDepart();
                 Ctmp2 = tmp -> GetTraj() -> GetVilleArrivee();
-                i=0;
-                while(i!=strlen(Ctmp) or i != strlen(vd))
-                {
-                        if(Ctmp[i] != vd[i])
-                        {
-                                equalDepart = false;
-                        }
 
-                        if(Ctmp2[i] != va[i])
-                        {
-                                equalArrivee = false;
-                        }
 
-                        i++;
-                }
-
-                if(equalDepart and equalArrivee)
-                {
-                        tmp -> AfficheTrajet();
+		if(strcmp(Ctmp, vd)==0 and strcmp(Ctmp2, va)==0)
+		{
+			tmp -> AfficheTrajet();
 			cout << endl;
-                }
+		}
 
-
+		
                 tmp = tmp -> GetNext();
 
         }
