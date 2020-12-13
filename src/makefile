@@ -1,6 +1,6 @@
 main: main.o TrajetSimple.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
 
-	g++ -o test TrajetSimple.o main.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
+	g++ -o main TrajetSimple.o main.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
 
 main.o : main.cpp
 
