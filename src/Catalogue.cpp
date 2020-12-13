@@ -32,6 +32,62 @@ using namespace std;
 //} //----- Fin de Méthode
 //
 
+void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee)
+//Algorithme  : 
+{
+	ElemTrajet * tmp;
+	tmp = listeTrajets -> GetFirstElem();
+
+	while(tmp != nullptr)
+	{
+		if(strcmp(tmp -> GetTraj() -> GetVilleDepart(), Depart)==0)
+		{
+			ListeChainee * listeCheminsPossibles = new ListeChainee();
+			listeCheminsPossibles -> AjouterTrajet(tmp -> GetTraj());
+			DFS(listeCheminsPossibles, arrivee, tmp -> GetTraj() -> GetVilleArrivee());
+			//delete listeCheminsPossibles;
+		}
+		
+		tmp = tmp -> GetNext();
+	}
+}
+
+void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct)
+{
+	ElemTrajet  *tmp;
+	tmp = listeTrajets -> GetFirstElem();
+	
+	while(tmp != nullptr)
+	{
+		if(strcmp(tmp -> GetTraj() -> GetVilleDepart(), noeudAct)==0)
+		{
+			//if pour le cas : on revient sur nos pas et on ne veut pas refaire le trajet déjà fait : 
+			while(!listeChemins -> isEmpty()  && strcmp(listeChemins -> GetLastElem() -> GetTraj() -> GetVilleArrivee(), tmp -> GetTraj()-> GetVilleDepart())!=0)
+			{
+				listeChemins -> RetireLastElem();
+			}
+
+			listeChemins -> AjouterTrajet(tmp -> GetTraj());
+			
+			// Si on est arrivés a destination, on retire et  l'algo continue sinon on relance la recherche récursive à partir du noeud suivant 
+			//
+			if(strcmp(tmp -> GetTraj() -> GetVilleArrivee(), dest)==0)
+			{
+				listeChemins -> AfficheListe();
+				listeChemins -> RetireLastElem();
+				//DFS(listeChemins, dest, tmp -> GetTrajet() -> GetDepart());
+			}
+		       	else 
+			{
+				DFS(listeChemins, dest, tmp -> GetTraj() -> GetVilleArrivee());
+			}
+		}
+
+		tmp = tmp -> GetNext();
+
+	}
+}
+
 void Catalogue::RechercheTrajet(char * vd, char *va) const
 //Algorithme :
 {

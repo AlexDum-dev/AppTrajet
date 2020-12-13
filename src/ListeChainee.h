@@ -38,6 +38,10 @@ public:
     // Contrat :
     // Aucun contrat.
 
+    ElemTrajet * GetLastElem();
+    //Mode d'emploi : 
+    //La méthode renvoie lastElem.
+
     void AfficheListe ( ) const;
     // Mode d'emploi :
     // Affiche l'ensemble des trajets de la liste.
@@ -51,6 +55,13 @@ public:
     // Contrat : 
     // Aucun contrat.
 
+    bool isEmpty();
+    // Renvoie vrai si la ListeChainee est vide, faux sinon.
+    
+    void RetireLastElem();
+    //Mode d'emploi : 
+    //Permet d'enlever le dernier élement de la liste chainée.
+   
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -71,9 +82,6 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
  
-    bool isEmpty();
-    // Renvoie vrai si la ListeChainee est vide, faux sinon.
-
 //----------------------------------------------------- Attributs protégés
 
     ElemTrajet * firstElem;

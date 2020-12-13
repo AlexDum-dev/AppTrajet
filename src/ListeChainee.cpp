@@ -32,6 +32,13 @@ ElemTrajet * ListeChainee::GetFirstElem( )
 	return firstElem;
 }
 
+ElemTrajet * ListeChainee::GetLastElem()
+// Algo : 
+// Renvoie un pointeur sur le dernier élément
+{
+	return lastElem;
+}
+
 void ListeChainee::AfficheListe( ) const 
 // Algorithme : 
 // Début :
@@ -49,9 +56,11 @@ void ListeChainee::AfficheListe( ) const
 	while(tmp != lastElem)
 	{
 		tmp -> GetTraj() -> AfficheTrajet();
+		cout << endl;
 		tmp = tmp -> GetNext();
 	} 
 	lastElem -> GetTraj() -> AfficheTrajet();
+	cout << endl;
 }//----- Fin de AfficheListe
 
 void ListeChainee::AjouterTrajet( Trajet * unTrajet )
@@ -81,6 +90,25 @@ void ListeChainee::AjouterTrajet( Trajet * unTrajet )
 	}
 }//----- Fin de AjouterTrajet
 
+void ListeChainee::RetireLastElem()
+{
+	if(!isEmpty())
+	{
+		ElemTrajet * tmp;
+		tmp = firstElem;
+		while(tmp -> GetNext() != lastElem)
+		{
+			tmp = tmp -> GetNext();
+		}
+
+		ElemTrajet * tmp2;
+		tmp2 = nullptr;
+		tmp -> SetNext(tmp2);
+	
+		delete lastElem;
+		lastElem = tmp;
+	}
+}
 //------------------------------------------- Constructeurs - Destructeur
 ListeChainee::ListeChainee ( )
 // Algorithme :

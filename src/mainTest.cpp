@@ -21,7 +21,7 @@ void ecran ( )
 int main()
 {
 	
-	/*	
+		
 	// Création de deux trajets 
 	char vd1[2+1] = {'P','a', '\0'};
 	char va1[2+1] = {'M', 'a','\0'};
@@ -43,41 +43,45 @@ int main()
 	//traj2 -> AfficheTrajet();
 
 		
-	
+	/*
 	//Liste de de trajets : 
 	ListeChainee * list;
 	list = new ListeChainee();
 	list -> AjouterTrajet(traj);
 	list -> AjouterTrajet(traj2);
 	list -> AfficheListe();
+	list -> RetireLastElem();
+	list -> AfficheListe();
 	delete list;
 	//list.AjouterTrajet(traj);
 	//list.AfficheListe();
+	*/
 	
-	
-		
+	/*	
 	TrajetCompose * trajCompo;
 	trajCompo = new TrajetCompose();
 	trajCompo -> AjouteTrajet(traj);
 	trajCompo -> AjouteTrajet(traj2);
 	//trajCompo -> AfficheTrajet();
 	
+	*/
 	Catalogue * catalogue;
 	catalogue = new Catalogue();
-	//catalogue -> AjouteTrajet(traj);
-	//catalogue -> AjouteTrajet(traj2);
+	catalogue -> AjouteTrajet(traj);
+	catalogue -> AjouteTrajet(traj2);
 	//catalogue -> AjouteTrajet(trajCompo);
 	catalogue -> AfficheCatalogue();
+	catalogue -> RechercheAvancee(vd1, va1);
 	
-	delete traj;
-	delete traj2;
+	//delete traj;
+	//delete traj2;
+	
 	delete catalogue;
-	delete trajCompo;
+	//delete trajCompo;
 
-	*/
 
 	//Menu
-
+	/*
 	char commande = 'c';
 	Catalogue * catalogue = new Catalogue();
 	while(commande != 'q')
@@ -258,5 +262,7 @@ int main()
 	
     }	
 	delete catalogue;
+
+	*/
 	return 0;
 }

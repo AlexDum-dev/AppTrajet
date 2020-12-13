@@ -35,6 +35,18 @@ public:
     // Contrat :
     //
     //
+    
+    void RechercheAvancee(const char * Depart, const char * Arrivee) ;
+    //Mode d'emploi : 
+    //
+    //Contrat :
+    //
+
+    void DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct);
+    // Mode d'emploi : 
+    //
+    // Contrat : 
+    //
 
     void RechercheTrajet(char * vd, char * va) const;
     //Mode d'emploi : 
