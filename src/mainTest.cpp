@@ -11,15 +11,17 @@ using namespace std;
 
 void ecran ( )
 {
-	cout << endl;
 	cout << "'a' pour ajouter un trajet" << endl;
 	cout << "'c' pour afficher le catalogue" << endl;
 	cout << "'r' pour rechercher un trajet" << endl;
+	cout << "'x' pour faire une recherche avancée" << endl;
 	cout << "'q' pour quitter" << endl;
 }
 
 int main()
 {
+
+	/*
 	
 		
 	// Création de deux trajets 
@@ -42,46 +44,68 @@ int main()
 	traj2 = new TrajetSimple(va1, vd1, mt1);
 	//traj2 -> AfficheTrajet();
 
-		
-	/*
+  	Trajet * traj3;
+        traj3 = new TrajetSimple(va1, vd1, mt1);		
+	
+	Trajet * traj4;
+        traj4 = new TrajetSimple(va1, vd1, mt1);
+	
+
 	//Liste de de trajets : 
 	ListeChainee * list;
 	list = new ListeChainee();
 	list -> AjouterTrajet(traj);
 	list -> AjouterTrajet(traj2);
+	list -> AjouterTrajet(traj3);
+	list -> AjouterTrajet(traj4);
 	list -> AfficheListe();
 	list -> RetireLastElem();
+	list -> RetireLastElem();
+	list -> RetireLastElem();
+	list -> RetireLastElem();
 	list -> AfficheListe();
+	list -> AjouterTrajet(traj);
+	list -> RetireLastElem();
+	list -> AfficheListe();
+	
+	delete traj;
+	delete traj2;
+	delete traj4;
+	delete traj3;
 	delete list;
+
 	//list.AjouterTrajet(traj);
 	//list.AfficheListe();
-	*/
 	
-	/*	
+	
+		
 	TrajetCompose * trajCompo;
 	trajCompo = new TrajetCompose();
 	trajCompo -> AjouteTrajet(traj);
 	trajCompo -> AjouteTrajet(traj2);
 	//trajCompo -> AfficheTrajet();
 	
-	*/
+	
+
 	Catalogue * catalogue;
 	catalogue = new Catalogue();
 	catalogue -> AjouteTrajet(traj);
 	catalogue -> AjouteTrajet(traj2);
 	//catalogue -> AjouteTrajet(trajCompo);
 	catalogue -> AfficheCatalogue();
+	cout << "***** Résultat ****** " << endl;
 	catalogue -> RechercheAvancee(vd1, va1);
 	
 	//delete traj;
 	//delete traj2;
-	
+	delete traj3;
+	delete traj4;
 	delete catalogue;
 	//delete trajCompo;
 
-
+	*/
 	//Menu
-	/*
+	
 	char commande = 'c';
 	Catalogue * catalogue = new Catalogue();
 	while(commande != 'q')
@@ -252,6 +276,25 @@ int main()
 				delete[] va;  
 				
 				break;
+	    case 'x':
+				// Entrée de la ville de départ
+                                cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+                                cin >> car;
+                                vd = new char[strlen(car)+1];
+                                strcpy(vd, car);
+
+                                // Entrée de la ville d'arrivée
+                                cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+                                cin >> car;
+                                va = new char[strlen(car)+1];
+                                strcpy(va, car);
+
+                                catalogue -> RechercheAvancee(vd,va);
+
+                                delete[] vd;
+                                delete[] va;
+			
+				break;
             case 'q':
                 break;
 			default:
@@ -262,7 +305,5 @@ int main()
 	
     }	
 	delete catalogue;
-
-	*/
 	return 0;
 }

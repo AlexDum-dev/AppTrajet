@@ -32,11 +32,13 @@ using namespace std;
 //} //----- Fin de Méthode
 //
 
-void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee)
+void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) const
 //Algorithme  : 
 {
 	ElemTrajet * tmp;
 	tmp = listeTrajets -> GetFirstElem();
+
+	RechercheTrajet(Depart, arrivee);
 
 	while(tmp != nullptr)
 	{
@@ -45,14 +47,19 @@ void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee)
 			ListeChainee * listeCheminsPossibles = new ListeChainee();
 			listeCheminsPossibles -> AjouterTrajet(tmp -> GetTraj());
 			DFS(listeCheminsPossibles, arrivee, tmp -> GetTraj() -> GetVilleArrivee());
-			//delete listeCheminsPossibles;
+			
+			while(listeCheminsPossibles -> GetFirstElem() != nullptr)
+			{
+				listeCheminsPossibles -> RetireLastElem();
+			}
+			delete listeCheminsPossibles;
 		}
 		
 		tmp = tmp -> GetNext();
 	}
 }
 
-void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct)
+void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct) const
 {
 	ElemTrajet  *tmp;
 	tmp = listeTrajets -> GetFirstElem();
@@ -88,7 +95,7 @@ void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char *
 	}
 }
 
-void Catalogue::RechercheTrajet(char * vd, char *va) const
+void Catalogue::RechercheTrajet(const char * vd, const char *va) const
 //Algorithme :
 {
         ElemTrajet *tmp;

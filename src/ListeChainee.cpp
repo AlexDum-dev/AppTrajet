@@ -51,6 +51,8 @@ void ListeChainee::AfficheListe( ) const
 	// Affiche le trajet contenu dans lastElem;
 // Fin.
 {
+	if(firstElem!=nullptr)
+	{
 	ElemTrajet * tmp;
 	tmp = firstElem;
 	while(tmp != lastElem)
@@ -61,6 +63,7 @@ void ListeChainee::AfficheListe( ) const
 	} 
 	lastElem -> GetTraj() -> AfficheTrajet();
 	cout << endl;
+	}
 }//----- Fin de AfficheListe
 
 void ListeChainee::AjouterTrajet( Trajet * unTrajet )
@@ -68,8 +71,8 @@ void ListeChainee::AjouterTrajet( Trajet * unTrajet )
 // paramètres : Trajet * unTrajet
 // Début :
 	// Si la liste invoquant la méthode est nulle faire :
-	//     création d'un pointeur sur ElemTrajet dont l'objet pointé contient le pointeur unTrajet;
-	//     firstElem pointe sur l'ElemTrajet pointé;
+//     création d'un pointeur sur ElemTrajet dont l'objet pointé contient le pointeur unTrajet;
+//     firstElem pointe sur l'ElemTrajet pointé;
 	//     lastElem <- firstElem;                               // lastElem pointe aussi sur cet ElemTrajet
 	// Sinon faire :
 	//     création d'un pointeur sur ElemTrajet "elem" dont l'objet pointé contient le pointeur unTrajet;
@@ -86,7 +89,7 @@ void ListeChainee::AjouterTrajet( Trajet * unTrajet )
 		ElemTrajet * elem;
 		elem = new ElemTrajet(unTrajet);
 		lastElem -> SetNext(elem);
-	    lastElem = elem;	
+	    	lastElem = elem;	
 	}
 }//----- Fin de AjouterTrajet
 
@@ -94,19 +97,31 @@ void ListeChainee::RetireLastElem()
 {
 	if(!isEmpty())
 	{
+
+
 		ElemTrajet * tmp;
 		tmp = firstElem;
-		while(tmp -> GetNext() != lastElem)
+		while(tmp!=lastElem and tmp -> GetNext() != lastElem)
 		{
 			tmp = tmp -> GetNext();
 		}
-
+		
+		//si c'est le dernier élement qu'on supprime : 
+		if(tmp == firstElem and tmp==lastElem)
+		{
+			firstElem = nullptr;
+			lastElem -> SetNull();
+			delete lastElem;
+			lastElem = nullptr;
+		} else 
+		{
+		lastElem -> SetNull();
+		delete lastElem;
 		ElemTrajet * tmp2;
 		tmp2 = nullptr;
 		tmp -> SetNext(tmp2);
-	
-		delete lastElem;
 		lastElem = tmp;
+		}
 	}
 }
 //------------------------------------------- Constructeurs - Destructeur

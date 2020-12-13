@@ -37,6 +37,11 @@ public:
     // à l'objet invoquant la méthode.
     // Contrat :
     // Aucun contrat.
+	
+    void SetNull();
+    //Mode d'emploi : 
+    //permet de mettre à nullptr le pointeur de trajet
+    //
 
     ElemTrajet * GetNext ( );
     // Mode d'emploi :

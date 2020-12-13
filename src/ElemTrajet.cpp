@@ -41,6 +41,11 @@ void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
 	trajSuivant = ptrElemTrajet; //on fait pointer le trajet suivant sur un trajet passé en paramètre
 }//----- Fin de SetNext
 
+void ElemTrajet::SetNull()
+{
+	traj = nullptr;
+}
+
 ElemTrajet* ElemTrajet::GetNext()
 // Algorithme :
 // Renvoie l'attribut trajSuivant de l'objet invoquant la méthode.
@@ -85,7 +90,12 @@ ElemTrajet::~ElemTrajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <ElemTrajet>" << endl;
 #endif
-	delete traj;
+    
+    	if(traj != nullptr)
+	{
+		delete traj;
+	}
+
 	if (HasNext( ))
 	{
 		delete trajSuivant;

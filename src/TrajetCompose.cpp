@@ -54,7 +54,7 @@ void TrajetCompose::AfficheTrajet ( ) const
 // affiche(retour à la ligne);
 // Fin.
 {
-	ElemTrajet * tmp;
+    ElemTrajet * tmp;
     tmp = listeTrajets -> GetFirstElem();
     while(tmp != nullptr)
     {
@@ -62,7 +62,6 @@ void TrajetCompose::AfficheTrajet ( ) const
         tmp -> GetTraj() -> AfficheTrajet();
         tmp = tmp -> GetNext();
     }
-	cout << endl;
 } //----- Fin de AfficheTrajet
 
 
