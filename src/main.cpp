@@ -9,6 +9,7 @@
 #include"Catalogue.h"
 using namespace std;
 
+
 void ecran ( )
 {
 	cout << "'a' pour ajouter un trajet" << endl;
@@ -20,95 +21,11 @@ void ecran ( )
 
 int main()
 {
-
-	/*
-	
-		
-	// Création de deux trajets 
-	char vd1[2+1] = {'P','a', '\0'};
-	char va1[2+1] = {'M', 'a','\0'};
-	char mt1[2+1] = {'V', 'e', '\0'};
-	Trajet * traj; 
-    	traj = new TrajetSimple(vd1,va1,mt1);
-	//traj -> AfficheTrajet();
-	
-	
-	//ElemTrajet * elem;
-	//ElemTrajet * elem2;
-	//elem2 = new ElemTrajet(traj);
-	//elem = new ElemTrajet(traj);
-	//elem -> SetNext(elem2);
-	//delete elem;
-	
-	Trajet * traj2;
-	traj2 = new TrajetSimple(va1, vd1, mt1);
-	//traj2 -> AfficheTrajet();
-
-  	Trajet * traj3;
-        traj3 = new TrajetSimple(va1, vd1, mt1);		
-	
-	Trajet * traj4;
-        traj4 = new TrajetSimple(va1, vd1, mt1);
-	
-
-	//Liste de de trajets : 
-	ListeChainee * list;
-	list = new ListeChainee();
-	list -> AjouterTrajet(traj);
-	list -> AjouterTrajet(traj2);
-	list -> AjouterTrajet(traj3);
-	list -> AjouterTrajet(traj4);
-	list -> AfficheListe();
-	list -> RetireLastElem();
-	list -> RetireLastElem();
-	list -> RetireLastElem();
-	list -> RetireLastElem();
-	list -> AfficheListe();
-	list -> AjouterTrajet(traj);
-	list -> RetireLastElem();
-	list -> AfficheListe();
-	
-	delete traj;
-	delete traj2;
-	delete traj4;
-	delete traj3;
-	delete list;
-
-	//list.AjouterTrajet(traj);
-	//list.AfficheListe();
-	
-	
-		
-	TrajetCompose * trajCompo;
-	trajCompo = new TrajetCompose();
-	trajCompo -> AjouteTrajet(traj);
-	trajCompo -> AjouteTrajet(traj2);
-	//trajCompo -> AfficheTrajet();
-	
-	
-
-	Catalogue * catalogue;
-	catalogue = new Catalogue();
-	catalogue -> AjouteTrajet(traj);
-	catalogue -> AjouteTrajet(traj2);
-	//catalogue -> AjouteTrajet(trajCompo);
-	catalogue -> AfficheCatalogue();
-	cout << "***** Résultat ****** " << endl;
-	catalogue -> RechercheAvancee(vd1, va1);
-	
-	//delete traj;
-	//delete traj2;
-	delete traj3;
-	delete traj4;
-	delete catalogue;
-	//delete trajCompo;
-
-	*/
 	//Menu
 	
 	char commande = 'c';
 	Catalogue * catalogue = new Catalogue();
-	while(commande != 'q')
+	while(commande != 'q') //comment q pour quitter
 	{
 		ecran();
         cin >> commande;
@@ -118,7 +35,7 @@ int main()
 		char car[100];
         switch(commande)
 		{
-            case 'a':
+            case 'a': //Ajouter un trajet
 				char type;
                 cout << "Voulez-vous ajouter un trajet simple ou composé ?" << endl;
 				cout << " - '1' pour un trajet simple " << endl;
@@ -249,14 +166,14 @@ int main()
 				}
 				
                 break;
-            case 'c':
+            case 'c': //Affiche tous les trajets
 
 				cout << "Voici le catalogue des trajets :" << endl;
                 catalogue -> AfficheCatalogue();
 				cout << endl;
 
                 break;
-			case 'r':
+			case 'r': //Recherche simple sur les trajets déjà présents dans le catalogue
 
 				// Entrée de la ville de départ
 				cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
@@ -276,7 +193,7 @@ int main()
 				delete[] va;  
 				
 				break;
-	    case 'x':
+			case 'x': //Recherche avanée : combine les trajets composés et les trajets simples pour effectuer la recherche 
 				// Entrée de la ville de départ
                                 cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
                                 cin >> car;

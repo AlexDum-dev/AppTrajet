@@ -6,7 +6,7 @@
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -20,35 +20,29 @@ using namespace std;
 #include "ListeChainee.h"
 #include "ElemTrajet.h"
 #include "TrajetSimple.h"
-//------------------------------------------------------------- Constantes
-
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-//
+
 
 void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) const
 //Algorithme  : 
 {
 	ElemTrajet * tmp;
 	tmp = listeTrajets -> GetFirstElem();
+	
 
-	RechercheTrajet(Depart, arrivee);
+	RechercheTrajet(Depart, arrivee); //Affiche les trajets trouvés par la méthode simple
 
-	while(tmp != nullptr)
+	while(tmp != nullptr) //On parcourt tout le catalogue
 	{
-		if(strcmp(tmp -> GetTraj() -> GetVilleDepart(), Depart)==0)
+		if(strcmp(tmp -> GetTraj() -> GetVilleDepart(), Depart)==0) //si on trouve une ville de départ d'un trajet qui est la ville de départ recherchée par l'utilisateur
 		{
 			ListeChainee * listeCheminsPossibles = new ListeChainee();
 			listeCheminsPossibles -> AjouterTrajet(tmp -> GetTraj());
-			DFS(listeCheminsPossibles, arrivee, tmp -> GetTraj() -> GetVilleArrivee());
+			DFS(listeCheminsPossibles, arrivee, tmp -> GetTraj() -> GetVilleArrivee()); //Recherche des combinaisons possibles à partir d'un point de départ
 			
-			while(listeCheminsPossibles -> GetFirstElem() != nullptr)
+			while(listeCheminsPossibles -> GetFirstElem() != nullptr) //Retire tous les élements de la liste temporaire
 			{
 				listeCheminsPossibles -> RetireLastElem();
 			}
@@ -60,6 +54,10 @@ void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) cons
 }
 
 void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct) const
+//Algorithme : Fonction récursive qui remplit la listeChemins au fur et à mesure. On part en faisant un trajet avec la ville de départ correspondant au départ recherché par l'utilisateur.
+//A partir de l'arrivée de ce trajet: si cette arrivée est la destination voulue par l'utilisateur on s'arrête, on affiche tous le chemins fait pour on revient sur nos pas jusqu'à trouver un autre chemin possible.
+//Si l'arrivée n'est pas la destination alors on relance la recherche (fonction récursive) à partir de cette arrivée. 
+
 {
 	ElemTrajet  *tmp;
 	tmp = listeTrajets -> GetFirstElem();
@@ -68,23 +66,22 @@ void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char *
 	{
 		if(strcmp(tmp -> GetTraj() -> GetVilleDepart(), noeudAct)==0)
 		{
-			//if pour le cas : on revient sur nos pas et on ne veut pas refaire le trajet déjà fait : 
+			// Permet de on revient sur nos pas et on ne veut pas refaire le trajet déjà fait : 
 			while(!listeChemins -> isEmpty()  && strcmp(listeChemins -> GetLastElem() -> GetTraj() -> GetVilleArrivee(), tmp -> GetTraj()-> GetVilleDepart())!=0)
 			{
 				listeChemins -> RetireLastElem();
 			}
 
-			listeChemins -> AjouterTrajet(tmp -> GetTraj());
+
+			listeChemins -> AjouterTrajet(tmp -> GetTraj()); //On avance d'un trajet 
 			
 			// Si on est arrivés a destination, on retire et  l'algo continue sinon on relance la recherche récursive à partir du noeud suivant 
-			//
 			if(strcmp(tmp -> GetTraj() -> GetVilleArrivee(), dest)==0)
 			{
 				listeChemins -> AfficheListe();
 				listeChemins -> RetireLastElem();
-				//DFS(listeChemins, dest, tmp -> GetTrajet() -> GetDepart());
 			}
-		       	else 
+		       	else
 			{
 				DFS(listeChemins, dest, tmp -> GetTraj() -> GetVilleArrivee());
 			}
@@ -96,7 +93,7 @@ void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char *
 }
 
 void Catalogue::RechercheTrajet(const char * vd, const char *va) const
-//Algorithme :
+//Algorithme : On recherche les trajets pour lesquels la ville de départ et la ville d'arrivée sont égales aux données de l'utilisateur
 {
         ElemTrajet *tmp;
         tmp = listeTrajets -> GetFirstElem();
@@ -160,25 +157,6 @@ void Catalogue::AfficheCatalogue() const
         }
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
-//Xxx & Xxx::operator = ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-//Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-//#endif
-//} //----- Fin de Xxx (constructeur de copie)
-
-
 Catalogue::Catalogue ()
 // Algorithme :
 //
@@ -199,9 +177,4 @@ Catalogue::~Catalogue ( )
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 } //----- Fin de ~Catalogue
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
 

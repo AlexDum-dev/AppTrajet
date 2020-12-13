@@ -13,13 +13,9 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "ListeChainee.h"
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
-//
+// Rôle de la classe <Catalogue>
+//Implémente une collection ordonnée de trajets (simples ou composés)
 //
 //------------------------------------------------------------------------
 
@@ -67,22 +63,7 @@ public:
     // Contrat : 
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    //Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    //Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
+//-------------------------------------------- Constructeur - Destructeur
     Catalogue ();
     // Mode d'emploi :
     //
@@ -103,8 +84,6 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 };
-
-//-------------------------------- Autres définitions dépendantes de <Xxx>
 
 #endif // CATALOGUE_H
 

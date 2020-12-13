@@ -1,14 +1,14 @@
-test: mainTest.o TrajetSimple.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
+main: main.o TrajetSimple.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
 
-	g++ -o test TrajetSimple.o mainTest.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
+	g++ -o test TrajetSimple.o main.o ElemTrajet.o ListeChainee.o TrajetCompose.o Catalogue.o
 
-mainTest.o : mainTest.cpp
+main.o : main.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 mainTest.cpp
+	g++ -c -ansi -pedantic -Wall -std=c++11 main.cpp
 
 TrajetSimple.o : TrajetSimple.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 TrajetSimple.cpp
+	g++ -c -DMAP -ansi -pedantic -Wall -std=c++11 TrajetSimple.cpp
 
 ElemTrajet.o : ElemTrajet.cpp
 
@@ -20,18 +20,18 @@ ListeChainee.o : ListeChainee.cpp
 
 TrajetCompose.o : TrajetCompose.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 TrajetCompose.cpp
+	g++ -c -DMAP -ansi -pedantic -Wall -std=c++11 TrajetCompose.cpp
 
 Catalogue.o : Catalogue.cpp
 
-	g++ -c -ansi -pedantic -Wall -std=c++11 Catalogue.cpp
+	g++ -c -DMAP -ansi -pedantic -Wall -std=c++11 Catalogue.cpp
 
 
 debug :
 
-	g++ -std=c++11 -g3 -o debug mainTest.cpp TrajetSimple.cpp ElemTrajet.cpp ListeChainee.cpp TrajetCompose.cpp Catalogue.cpp
+	g++ -std=c++11 -g3 -o debug main.cpp TrajetSimple.cpp ElemTrajet.cpp ListeChainee.cpp TrajetCompose.cpp Catalogue.cpp
 
 clean : 
 
-	rm *.o test debug 
+	rm *.o main debug 
 
