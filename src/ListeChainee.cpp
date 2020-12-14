@@ -58,7 +58,7 @@ void ListeChainee::AfficheListe ( ) const
 	while(tmp != lastElem)
 	{
 		tmp -> GetTraj() -> AfficheTrajet();
-		//cout << endl;
+		cout << ", ";
 		tmp = tmp -> GetNext();
 	} 
 	lastElem -> GetTraj() -> AfficheTrajet();
