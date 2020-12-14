@@ -51,7 +51,7 @@ void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) cons
 		
 		tmp = tmp -> GetNext();
 	}
-}
+}  // -- Fin de RechercheAvancee
 
 void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char * noeudAct) const
 //Algorithme : Fonction récursive qui remplit la listeChemins au fur et à mesure. On part en faisant un trajet avec la ville de départ correspondant au départ recherché par l'utilisateur.
@@ -90,7 +90,7 @@ void Catalogue::DFS(ListeChainee * listeChemins, const char * dest, const char *
 		tmp = tmp -> GetNext();
 
 	}
-}
+} // --- Fin de DFS
 
 void Catalogue::RechercheTrajet(const char * vd, const char *va) const
 //Algorithme : On recherche les trajets pour lesquels la ville de départ et la ville d'arrivée sont égales aux données de l'utilisateur
