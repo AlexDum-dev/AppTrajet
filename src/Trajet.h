@@ -83,7 +83,7 @@ public:
     // Mode d'emploi :
     // Detruit le Trajet.
     // Contrat :
-    //
+    // Aucun contrat.
 
 //------------------------------------------------------------------ PRIVE
 

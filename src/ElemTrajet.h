@@ -31,17 +31,25 @@ class ElemTrajet
 public:
 //----------------------------------------------------- Méthodes publiques
     
-    void SetNext ( ElemTrajet *ptrElemTrajet );
+    void SetNext ( ElemTrajet * ptrElemTrajet );
     // Mode d'emploi :
     // Permet "d'attacher" un ElemTrajet grâce à un pointeur sur cet objet
     // à l'objet invoquant la méthode.
     // Contrat :
     // Aucun contrat.
 	
-    void SetNull();
-    //Mode d'emploi : 
-    //permet de mettre à nullptr le pointeur de trajet
-    //
+    void SetNull ( );
+    // Mode d'emploi : 
+    // Permet de mettre à nullptr le pointeur de trajet
+    // Contrat :
+    // Pour utiliser cette méthode, il faut être dans l'un des cas suivants :
+    // - soit l'attibut traj de l'objet invoquant la méthode n'a pas été
+    // initialisé (utilisation d'un constructeur par défaut).
+    // - soit il existe un autre ElemTrajet qui contient un pointeur de 
+    // Trajet qui pointe sur l'attribut traj de l'objet invoquant la méthode.
+    // Si ce n'est pas le cas, lors de la destruction des objets, le 
+    // TrajetSimple ou TrajetCompose initialement pointé par l'objet 
+    // invoquant la méthode ne sera jamais supprimé en mémoire.
 
     ElemTrajet * GetNext ( );
     // Mode d'emploi :

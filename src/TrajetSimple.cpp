@@ -24,11 +24,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetSimple::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 char * TrajetSimple::GetMoyenTransport ( )
 // Algorithme :
@@ -51,7 +46,7 @@ char * TrajetSimple::GetVilleArrivee ( )
 	return villeArrivee;
 }//----- Fin de GetVilleArrivee
 
-void TrajetSimple::AfficheTrajet() const 
+void TrajetSimple::AfficheTrajet ( ) const 
 // Algorithme : 
 // Début :
 	// Affiche("De");
@@ -91,11 +86,11 @@ void TrajetSimple::AfficheTrajet() const
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple (char *villeD, char *villeA, char *moyDeT)
+TrajetSimple::TrajetSimple ( char *villeD, char *villeA, char *moyDeT )
 {
 // Algortihme :
 // On déclare dynamiquement les attributs avec la longueur des paramètres +1 qui est 
-// lié au caractère '\0', puis on copie avec la fonction strcpy(destination, source)
+// lié au caractère de fin de chaîne '\0', puis on copie avec la fonction strcpy(destination, source)
 //
 	villeDepart = new char[strlen(villeD)+1];
 	villeArrivee = new char[strlen(villeA)+1];
@@ -110,7 +105,7 @@ TrajetSimple::TrajetSimple (char *villeD, char *villeA, char *moyDeT)
 } //----- Fin de TrajetSimple
 
 
-TrajetSimple::~TrajetSimple (void)
+TrajetSimple::~TrajetSimple ( void )
 // Algorithme :
 // On supprime la mémoire allouée à chaque chaîne de caractère.
 //

@@ -31,16 +31,18 @@ class ListeChainee
 public:
 //----------------------------------------------------- Méthodes publiques
 	
-    ElemTrajet * GetFirstElem ( ); 
+    ElemTrajet * GetFirstElem ( );
     // Mode d'emploi :
     // La méthode renvoie firstElem, cela servira aux classes utilisant 
     // ListeChainee.
     // Contrat :
     // Aucun contrat.
 
-    ElemTrajet * GetLastElem();
-    //Mode d'emploi : 
-    //La méthode renvoie lastElem.
+    ElemTrajet * GetLastElem ( );
+    // Mode d'emploi : 
+    // La méthode renvoie lastElem.
+    // Contrat :
+    // Aucun contrat.
 
     void AfficheListe ( ) const;
     // Mode d'emploi :
@@ -55,12 +57,24 @@ public:
     // Contrat : 
     // Aucun contrat.
 
-    bool isEmpty();
+    bool isEmpty ( );
+    // Mode d'emploi :
     // Renvoie vrai si la ListeChainee est vide, faux sinon.
+    // Contrat :
+    // Aucun contrat.
     
-    void RetireLastElem();
-    //Mode d'emploi : 
-    //Permet d'enlever le dernier élement de la liste chainée.
+    void RetireLastElem ( );
+    // Mode d'emploi : 
+    // Permet d'enlever le dernier élement de la liste chainée.
+    // Contrat :
+    // Cette méthode ne peut être utilsié que dans le cas où
+    // le pointeur de Trajet du dernier ElemTrajet de la liste ne pointe
+    // pas sur une zone mémoire allouée dynamiquement, où alors qu'il 
+    // existe une autre ListeChainee qui contient un ElemTrajet dont
+    // l'attribut traj pointe sur la zone allouée. Autrement, la zone
+    // mémoire du TrajetSimple ou TrajetCompose pointée ne serait pas
+    // supprimée.
+    // 
    
 
 //------------------------------------------------- Surcharge d'opérateurs

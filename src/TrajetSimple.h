@@ -30,7 +30,7 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     
-    void AfficheTrajet() const;
+    void AfficheTrajet ( ) const;
     // Mode d'emploi :
     // La méthode AfficheTrajet affiche le Trajet. Elle ne doit en aucun cas servir à modifier 
     // le trajet, d'où le "const".
@@ -59,14 +59,14 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetSimple(char * villeD, char * villeA, char * moyDeT);
+    TrajetSimple ( char * villeD, char * villeA, char * moyDeT );
     // Mode d'emploi : 
     // Initialise un trajet avec une ville de départ, une ville d'arrivée et un moyen de transport
     // passé en paramètre
     // Contrat :
     // Aucun contrat.
 
-    virtual ~TrajetSimple( );
+    virtual ~TrajetSimple ( );
     // Mode d'emploi : 
     // Détruit le TrajetSimple invoquant la méthode en supprimant la 
     // mémoire allouée.

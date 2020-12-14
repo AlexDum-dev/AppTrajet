@@ -24,47 +24,49 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void ElemTrajet::AfficheTrajet() const
+void ElemTrajet::AfficheTrajet ( ) const
 // Algorithme :
 // Affiche le trajet de l'élément invoquant la méthode AfficheTrajet
 // de la classe Trajet.
 //
 {
 	traj -> AfficheTrajet();
-}//----- Fin de AfficheTrajet
+} //----- Fin de AfficheTrajet
 
-void ElemTrajet::SetNext(ElemTrajet *ptrElemTrajet)
+void ElemTrajet::SetNext ( ElemTrajet * ptrElemTrajet )
 // Algorithme :
 // On fait pointer l'attribut trajSuivant de l'objet invoquant la méthode
 // sur l'ElemTrajet passé en paramètre.
 {
 	trajSuivant = ptrElemTrajet; //on fait pointer le trajet suivant sur un trajet passé en paramètre
-}//----- Fin de SetNext
+} //----- Fin de SetNext
 
-void ElemTrajet::SetNull()
+void ElemTrajet::SetNull ( )
+// Algorithme :
+// traj <- nullptr;
 {
 	traj = nullptr;
-}
+} //----- Fin de SetNull
 
-ElemTrajet* ElemTrajet::GetNext()
+ElemTrajet* ElemTrajet::GetNext ( )
 // Algorithme :
 // Renvoie l'attribut trajSuivant de l'objet invoquant la méthode.
 {
 	return trajSuivant;
-}//----- Fin de GetNext
+} //----- Fin de GetNext
 
-Trajet * ElemTrajet::GetTraj()
+Trajet * ElemTrajet::GetTraj ( )
 // Algorithme :
 // Renvoie l'attribut traj de l'objet invoquant la méthode.
 {
 	return traj;
-}//----- Fin de GetTraj
+} //----- Fin de GetTraj
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
-ElemTrajet::ElemTrajet (Trajet * unTrajet )
+ElemTrajet::ElemTrajet ( Trajet * unTrajet )
 // Algorithme :
 //
 {
@@ -81,7 +83,9 @@ ElemTrajet::ElemTrajet (Trajet * unTrajet )
 ElemTrajet::~ElemTrajet ( )
 // Algorithme :
 // Début :
-	// Supprime(traj)
+	// Si traj != nullptr faire :
+	//     Supprime(traj);
+	// Fin si
 	// Si il y a un trajet suivant: 
 	//     le détruit en faisant appel à ce destructeur;
 	// Fin si
@@ -91,12 +95,12 @@ ElemTrajet::~ElemTrajet ( )
     cout << "Appel au destructeur de <ElemTrajet>" << endl;
 #endif
     
-    	if(traj != nullptr)
+    if (traj != nullptr)
 	{
 		delete traj;
 	}
 
-	if (HasNext( ))
+	if (HasNext())
 	{
 		delete trajSuivant;
 	}
@@ -123,5 +127,5 @@ bool ElemTrajet::HasNext ( )
 		return false;
 	}
 	return true;
-}
+} //----- Fin de HasNext
 

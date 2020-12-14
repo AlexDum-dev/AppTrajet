@@ -25,21 +25,21 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-ElemTrajet * ListeChainee::GetFirstElem( )
+ElemTrajet * ListeChainee::GetFirstElem ( )
 // Algorithme : 
 // Renvoie firstElem;
 {
 	return firstElem;
-}
+} //----- Fin de GetFirstElem
 
-ElemTrajet * ListeChainee::GetLastElem()
-// Algo : 
+ElemTrajet * ListeChainee::GetLastElem ( )
+// Algorithme : 
 // Renvoie un pointeur sur le dernier élément
 {
 	return lastElem;
-}
+} //----- Fin de GetLastElem
 
-void ListeChainee::AfficheListe( ) const 
+void ListeChainee::AfficheListe ( ) const 
 // Algorithme : 
 // Début :
 	// ElemTrajet * tmp;
@@ -64,15 +64,15 @@ void ListeChainee::AfficheListe( ) const
 	lastElem -> GetTraj() -> AfficheTrajet();
 	cout << endl;
 	}
-}//----- Fin de AfficheListe
+} //----- Fin de AfficheListe
 
-void ListeChainee::AjouterTrajet( Trajet * unTrajet )
+void ListeChainee::AjouterTrajet ( Trajet * unTrajet )
 // Algorithme : 
 // paramètres : Trajet * unTrajet
 // Début :
-	// Si la liste invoquant la méthode est nulle faire :
-//     création d'un pointeur sur ElemTrajet dont l'objet pointé contient le pointeur unTrajet;
-//     firstElem pointe sur l'ElemTrajet pointé;
+	// Si la liste invoquant la méthode est vide faire :
+	//     création d'un pointeur sur ElemTrajet dont l'objet pointé contient le pointeur unTrajet;
+	//     firstElem pointe sur l'ElemTrajet pointé;
 	//     lastElem <- firstElem;                               // lastElem pointe aussi sur cet ElemTrajet
 	// Sinon faire :
 	//     création d'un pointeur sur ElemTrajet "elem" dont l'objet pointé contient le pointeur unTrajet;
@@ -81,24 +81,44 @@ void ListeChainee::AjouterTrajet( Trajet * unTrajet )
 	// Fin si
 // Fin.
 {
-	if(isEmpty())
+	if (isEmpty())
 	{
 		firstElem = new ElemTrajet(unTrajet);
 		lastElem = firstElem;
-	} else {
+	} 
+	else 
+	{
 		ElemTrajet * elem;
 		elem = new ElemTrajet(unTrajet);
 		lastElem -> SetNext(elem);
-	    	lastElem = elem;	
+	    lastElem = elem;	
 	}
-}//----- Fin de AjouterTrajet
+} //----- Fin de AjouterTrajet
 
-void ListeChainee::RetireLastElem()
+void ListeChainee::RetireLastElem ( )
+// Algorithme : 
+// Début :
+	// Si la liste invoquant la méthode n'est pas vide faire :
+	//     ElemTrajet * tmp;
+	//     tmp <- firstElem;
+	//     Tant que tmp!=lastElem et que l'élément suivant tmp est aussi différent de lastElem faire :
+	//         tmp <- élément suivant tmp;
+	//     Fin tant que
+	//     Si tmp==firstElem et tmp==lastElem faire :
+	//         firstELem <- nullptr;
+	//         lastElem -> SetNull();                // on fait pointer l'attribut traj de lastELem sur nullptr
+	//         Supprime(lastElem);
+	//         lastElem <- nullptr;
+	//     Sinon faire :
+	//         lastElem -> SetNull();
+	//         Supprime(lastElem);
+	//         On fait pointer l'élément suivant tmp sur nullptr;
+	//         lastELem <- tmp;
+	//     Fin si
+// Fin.
 {
-	if(!isEmpty())
+	if (!isEmpty())
 	{
-
-
 		ElemTrajet * tmp;
 		tmp = firstElem;
 		while(tmp!=lastElem and tmp -> GetNext() != lastElem)
@@ -107,23 +127,25 @@ void ListeChainee::RetireLastElem()
 		}
 		
 		//si c'est le dernier élement qu'on supprime : 
-		if(tmp == firstElem and tmp==lastElem)
+		if (tmp==firstElem and tmp==lastElem)
 		{
 			firstElem = nullptr;
 			lastElem -> SetNull();
 			delete lastElem;
 			lastElem = nullptr;
-		} else 
+		} 
+		else 
 		{
-		lastElem -> SetNull();
-		delete lastElem;
-		ElemTrajet * tmp2;
-		tmp2 = nullptr;
-		tmp -> SetNext(tmp2);
-		lastElem = tmp;
+			lastElem -> SetNull();
+			delete lastElem;
+			ElemTrajet * tmp2;
+			tmp2 = nullptr;
+			tmp -> SetNext(tmp2);
+			lastElem = tmp;
 		}
 	}
-}
+} //----- Fin de RetireLastElem
+
 //------------------------------------------- Constructeurs - Destructeur
 ListeChainee::ListeChainee ( )
 // Algorithme :
