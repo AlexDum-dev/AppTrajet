@@ -88,6 +88,63 @@ void Catalogue::Lecture(string nomFichier)
         }
 }
 
+void Catalogue::Lecture(string nomFichier, char typeTrajet)
+//Algorithme : Lecture dans un catalogue à en sélectionnant le type de trajet 
+{
+        ifstream fic;
+        fic.open(nomFichier);
+ 
+        if(fic)
+        {
+                string s;
+                char car;
+                string villeDep;
+                string villeArr;
+                string mdTransport;
+
+                while(fic.peek() != EOF)
+                {
+                        fic.get(car);
+                        if((car == typeTrajet) & (typeTrajet == 'S'))
+                        {
+                                cout << "Trace du if trajet simple" << endl;
+
+                                getline(fic, villeDep, ',');
+                                getline(fic, villeArr, ',');
+                                getline(fic, mdTransport);
+
+                                Trajet * traj;
+                                traj = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+                               	AjouteTrajet(traj);
+                        }
+                        else if((car == typeTrajet) & (typeTrajet=='C'))
+                        {
+                                cout << "Trace du if composé" << endl;
+                                Trajet * traj;
+                                traj = new TrajetCompose;
+                                while(fic.peek() != '\n')
+                                {
+                                        getline(fic, villeDep, ',');
+                                        getline(fic, villeArr, ',');
+                                        getline(fic, mdTransport, '>');
+
+                                        Trajet * trajSimple;
+                                        trajSimple = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+                                        traj -> AjouteTrajet(trajSimple);
+				 }
+                                AjouteTrajet(traj);
+                        }
+
+                }
+                AfficheCatalogue();
+        }
+        else
+        {
+                cerr << "Erreur de lecture du fichier" << endl;
+        }
+
+}
+
 void Catalogue::Ecriture(string nomFichier)
 //Algorithme : 
 {

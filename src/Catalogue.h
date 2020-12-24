@@ -48,6 +48,8 @@ public:
     //Contrat  : 
     //
 
+    
+
     void Lecture(std::string nomFichier);
     //Mode d'emploi :
     //Permet la lecture depuis un fichier dans un catalogue  :  :
@@ -56,7 +58,8 @@ public:
     //Contrat  :
     //
 
-    
+    void Lecture(std::string nomFichier, char typeTrajet);
+
     void RechercheAvancee(const char * Depart, const char * Arrivee) const;
     //Mode d'emploi : 
     //Permet de renvoyer la liste de tous les trajets possibles correspondant au départ et à a destination voulue par l'utilisateur
