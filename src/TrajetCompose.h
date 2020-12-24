@@ -34,6 +34,8 @@ class TrajetCompose : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
+   char GetType();
+    
    char * GetVilleDepart ( );
    // Mode d'emploi : 
    // Cette méthode permet d'avoir accès à l'attribut villeDepart 

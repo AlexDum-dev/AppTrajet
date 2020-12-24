@@ -30,6 +30,8 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     
+    char GetType();
+    
     void AfficheTrajet ( ) const;
     // Mode d'emploi :
     // La méthode AfficheTrajet affiche le Trajet. Elle ne doit en aucun cas servir à modifier 
@@ -59,7 +61,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetSimple ( char * villeD, char * villeA, char * moyDeT );
+    TrajetSimple (const char * villeD, const char * villeA, const char * moyDeT );
     // Mode d'emploi : 
     // Initialise un trajet avec une ville de départ, une ville d'arrivée et un moyen de transport
     // passé en paramètre

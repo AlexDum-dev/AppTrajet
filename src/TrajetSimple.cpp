@@ -25,6 +25,12 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+char TrajetSimple::GetType()
+{
+	
+	return 'S';
+}
+
 char * TrajetSimple::GetMoyenTransport ( )
 // Algorithme :
 // Renvoie l'attribut protégé moyDeTransport.
@@ -86,7 +92,7 @@ void TrajetSimple::AfficheTrajet ( ) const
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple ( char *villeD, char *villeA, char *moyDeT )
+TrajetSimple::TrajetSimple (const char *villeD, const char *villeA, const char *moyDeT )
 {
 // Algortihme :
 // On déclare dynamiquement les attributs avec la longueur des paramètres +1 qui est 

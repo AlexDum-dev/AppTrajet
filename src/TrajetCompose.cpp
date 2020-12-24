@@ -26,6 +26,11 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+char TrajetCompose::GetType()
+{
+	
+	return 'C';
+}
 
 char * TrajetCompose::GetVilleDepart ( )
 // Algorithme :

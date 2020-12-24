@@ -1,6 +1,6 @@
 #include<iostream>
 #include<cstring>
-
+#include <string> 
 #include"TrajetSimple.h"
 #include"Trajet.h"
 #include"ListeChainee.h"
@@ -16,11 +16,20 @@ void ecran ( )
 	cout << "'c' pour afficher le catalogue" << endl;
 	cout << "'r' pour rechercher un trajet" << endl;
 	cout << "'x' pour faire une recherche avancée" << endl;
+	cout << "'l' pour faire une lecture depuis un fichier" <<endl;
 	cout << "'q' pour quitter" << endl;
 }
 
 int main()
 {
+	Catalogue cata;
+	string nomFichier = "bdd.txt";
+	cata.Lecture(nomFichier);
+
+	string nomFichier2("bdd2.txt");
+	cata.Ecriture(nomFichier2);
+
+	/*
 	//Menu
 	
 	char commande = 'c';
@@ -212,6 +221,16 @@ int main()
                                 delete[] va;
 			
 				break;
+	    	case 'l':
+				string nomFichier;
+				cout << "Veuillez entrez le nom du fichier depuis lequel vous voulez charger les trajets" << endl;
+				cin >> nomFichier;	
+
+				Catalogue catal;
+				catal.Lecture(nomFichier);
+				catal.AfficheCatalogue();
+				
+				break;
             case 'q':
                 break;
 			default:
@@ -222,5 +241,7 @@ int main()
 	
     }	
 	delete catalogue;
+
+	*/
 	return 0;
 }

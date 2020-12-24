@@ -10,9 +10,11 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
+
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 #include "ListeChainee.h"
+#include <string>
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
 //Implémente une collection ordonnée de trajets (simples ou composés)
@@ -31,6 +33,29 @@ public:
     // Contrat :
     //
     //
+
+    ListeChainee * GetListeTrajets();
+    //Mode d'emploi : 
+    //Permet de renvoyer la liste chainee contenant tous les trajets 
+    //Contrat: 
+    //
+
+    void Ecriture(std::string nomFichier);
+    //Mode d'emploi :
+    //Permet d'écrire dans une fichier des trajets qui sont dans le catalogue :
+    //sans critère de sélection -> on écrit tous les trajets dans le fichier
+    //avec critère de sélection : selon le type de trajet ou selon la ville de départ et/ou d'arrivée
+    //Contrat  : 
+    //
+
+    void Lecture(std::string nomFichier);
+    //Mode d'emploi :
+    //Permet la lecture depuis un fichier dans un catalogue  :  :
+    //sans critère de sélection -> on écrit tous les trajets dans le fichier
+    //avec critère de sélection : selon le type de trajet ou selon la ville de départ et/ou d'arrivée
+    //Contrat  :
+    //
+
     
     void RechercheAvancee(const char * Depart, const char * Arrivee) const;
     //Mode d'emploi : 

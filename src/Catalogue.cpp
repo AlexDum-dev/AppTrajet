@@ -14,16 +14,115 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
+#include <iostream>
+#include <fstream>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "Trajet.h"
 #include "ListeChainee.h"
 #include "ElemTrajet.h"
 #include "TrajetSimple.h"
+#include "TrajetCompose.h"
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
+ListeChainee * Catalogue::GetListeTrajets()
+{
+        return listeTrajets;
+}
+
+void Catalogue::Lecture(string nomFichier)
+//Algorithme : 
+{
+	
+	ifstream fic;
+        fic.open(nomFichier);
+ 
+        if(fic)
+        {
+                string s;
+                char car;
+                string villeDep;
+                string villeArr;
+                string mdTransport;
+
+                while(fic.peek() != EOF)
+                {
+                        fic.get(car);
+                        if(car == 'S')
+                        {
+
+                                getline(fic, villeDep, ',');
+                                getline(fic, villeArr, ',');
+                                getline(fic, mdTransport);
+
+                                Trajet * traj;
+                                traj = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+                               	AjouteTrajet(traj);
+                        }
+                        else if(car == 'C')
+                        {
+                                Trajet * traj;
+                                traj = new TrajetCompose;
+                                while(fic.peek() != '\n')
+                                {
+                                        getline(fic, villeDep, ',');
+                                        getline(fic, villeArr, ',');
+                                        getline(fic, mdTransport, '>');
+
+                                        Trajet * trajSimple;
+                                        trajSimple = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+                                        traj -> AjouteTrajet(trajSimple);
+				 }
+                                AjouteTrajet(traj);
+                        }
+
+                }
+                AfficheCatalogue();
+        }
+        else
+        {
+                cerr << "Erreur de lecture du fichier" << endl;
+        }
+}
+
+void Catalogue::Ecriture(string nomFichier)
+//Algorithme : 
+{
+    
+    ofstream monFlux(nomFichier.c_str());
+
+    if(monFlux)
+    {
+        ElemTrajet * tmp;
+        tmp = GetListeTrajets()->GetFirstElem();
+        while (tmp != nullptr)
+        {
+            if (tmp->GetTraj()->GetType() == 'S')
+            {
+                monFlux << tmp->GetTraj()->GetType();
+                monFlux << tmp->GetTraj()->GetVilleDepart();
+                monFlux << ",";
+                monFlux << tmp->GetTraj()->GetVilleArrivee();
+                monFlux << ",";
+                monFlux << tmp->GetTraj()->GetMoyenTransport();
+                monFlux << '\n';
+            }
+            else if (tmp->GetTraj()->GetType() == 'C')
+            {
+
+            }
+            tmp = tmp -> GetNext(); 
+        } 
+    }
+    else
+    {
+        cout << "Erreur" << endl;
+    } 
+
+}
 
 void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) const
 //Algorithme  : 

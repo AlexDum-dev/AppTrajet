@@ -30,6 +30,10 @@ class Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
+    virtual char GetType() {return 0;};
+    //Mode d'emploi : 
+    //Renvoie un char caractérisant le type de trajet
+
     virtual char * GetMoyenTransport ( ){char * m = 0; return m;};
     // Mode d'emploi :
     // La méthode GetMoyenTransport renvoie une chaîne de caractère
