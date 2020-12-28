@@ -24,9 +24,10 @@ int main()
 {
 	Catalogue cata;
 	string nomFichier = "bdd.txt";
-	//cata.Lecture(nomFichier);
-	char type = 'C';
-	cata.Lecture(nomFichier, type);
+	cata.Lecture(nomFichier);
+	cata.AfficheCatalogue();
+	//char type = 'C';
+	//cata.Lecture(nomFichier, type);
 
 	//string nomFichier2("bdd2.txt");
 	//ata.Ecriture(nomFichier2);

@@ -33,61 +33,6 @@ ListeChainee * Catalogue::GetListeTrajets()
         return listeTrajets;
 }
 
-void Catalogue::Lecture(string nomFichier)
-//Algorithme : 
-{
-	
-	ifstream fic;
-        fic.open(nomFichier);
- 
-        if(fic)
-        {
-                string s;
-                char car;
-                string villeDep;
-                string villeArr;
-                string mdTransport;
-
-                while(fic.peek() != EOF)
-                {
-                        fic.get(car);
-                        if(car == 'S')
-                        {
-
-                                getline(fic, villeDep, ',');
-                                getline(fic, villeArr, ',');
-                                getline(fic, mdTransport);
-
-                                Trajet * traj;
-                                traj = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
-                               	AjouteTrajet(traj);
-                        }
-                        else if(car == 'C')
-                        {
-                                Trajet * traj;
-                                traj = new TrajetCompose;
-                                while(fic.peek() != '\n')
-                                {
-                                        getline(fic, villeDep, ',');
-                                        getline(fic, villeArr, ',');
-                                        getline(fic, mdTransport, '>');
-
-                                        Trajet * trajSimple;
-                                        trajSimple = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
-                                        traj -> AjouteTrajet(trajSimple);
-				 }
-                                AjouteTrajet(traj);
-                        }
-
-                }
-                AfficheCatalogue();
-        }
-        else
-        {
-                cerr << "Erreur de lecture du fichier" << endl;
-        }
-}
-
 void Catalogue::Lecture(string nomFichier, char typeTrajet)
 //Algorithme : Lecture dans un catalogue à en sélectionnant le type de trajet 
 {
@@ -127,6 +72,7 @@ void Catalogue::Lecture(string nomFichier, char typeTrajet)
                                         getline(fic, villeDep, ',');
                                         getline(fic, villeArr, ',');
                                         getline(fic, mdTransport, '>');
+                                        
 
                                         Trajet * trajSimple;
                                         trajSimple = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
@@ -143,6 +89,110 @@ void Catalogue::Lecture(string nomFichier, char typeTrajet)
                 cerr << "Erreur de lecture du fichier" << endl;
         }
 
+}
+
+void Catalogue::Lecture(string nomFichier, string villeDepart, string villeArrivee)
+//Algorithme : Pou chaque trajet dans le fichier on créé un trajet puis on regarde s'il correspond aux entrées de l'utilisateur:
+//l'utilisateur peut rentrer la ville de départ et/ou ville d'arrivée ou décider de ne rien spécifier et de prendre tous les trajets du fichier
+{
+        ifstream fic;
+        fic.open(nomFichier);
+        
+        bool dep = (villeDepart != "") &(villeArrivee == ""); // cas on a juste la ville de depart
+        bool arr = (villeArrivee != "") & (villeDepart == ""); //cas on a juste la ville d'arrivée
+        bool both = (villeArrivee != "") & (villeDepart != ""); //cas on a les deux villes spécifiées
+
+        if(fic)
+        {
+                string s;
+                char car;
+                string villeDep;
+                string villeArr;
+                string mdTransport;
+
+                fic.get(car);
+                while(fic.peek() != EOF)
+                { 
+                        Trajet * traj; //trajet potentiellement ajouté
+                        if((car == 'S'))
+                        {                                
+                                cout << "Trace d'un trajet simple" << endl;
+                                getline(fic, villeDep, ',');
+                                getline(fic, villeArr, ',');
+                                getline(fic, mdTransport);
+
+                                
+                                traj = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+
+                        }
+                        else if((car == 'C'))
+                        {
+                                //Trajet * traj;
+                                cout << "Trace d'un trajet composé" << endl;
+                                traj = new TrajetCompose;
+                                while(fic.peek() != '\n')
+                                {
+                                        getline(fic, villeDep, ',');
+                                        getline(fic, villeArr, ',');
+                                        getline(fic, mdTransport, '>');
+                                        
+
+                                        Trajet * trajSimple;
+                                        trajSimple = new TrajetSimple(villeDep.c_str(), villeArr.c_str(), mdTransport.c_str());
+                                        traj -> AjouteTrajet(trajSimple);
+				}
+                                fic.get();
+                        }
+                        if(dep & !arr & !both)
+                        {
+                                cout << "Trace du départ spécifié" << endl;
+                                if(strcmp(traj -> GetVilleDepart(), villeDepart.c_str()) == 0)
+                                {
+                                        AjouteTrajet(traj);
+                                } 
+                                else 
+                                {
+                                        delete traj;
+                                }        
+                        }
+                        else if(!dep & arr & !both)
+                        {
+                                cout << "Trace de l'arrivée spécifiée" << endl;
+                                if(strcmp(traj -> GetVilleArrivee(), villeArrivee.c_str()) == 0)
+                                {
+                                        cout << "Trajet ajouté" << endl;
+                                        AjouteTrajet(traj);
+                                }
+                                else 
+                                {
+                                        cout << "Trace du delete" << endl;
+                                        delete traj;
+                                }
+
+                        }
+                        else if(both)
+                        {
+                                cout << "Trace du both" << endl;
+                                if((strcmp(traj -> GetVilleDepart(), villeDepart.c_str()) == 0) & (strcmp(traj -> GetVilleArrivee(), villeArrivee.c_str()) == 0))
+                                {
+                                        AjouteTrajet(traj);
+                                } else 
+                                { 
+                                        delete traj;   
+                                }
+                        }
+                        else 
+                        { 
+                                cout << "Trace du none" << endl;
+                                AjouteTrajet(traj);
+                        }        
+                        fic.get(car);
+                }
+        }
+        else
+        {
+                cerr << "Erreur de lecture du fichier" << endl;
+        }
 }
 
 void Catalogue::Ecriture(string nomFichier)

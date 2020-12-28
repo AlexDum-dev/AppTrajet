@@ -48,17 +48,17 @@ public:
     //Contrat  : 
     //
 
-    
-
-    void Lecture(std::string nomFichier);
-    //Mode d'emploi :
-    //Permet la lecture depuis un fichier dans un catalogue  :  :
-    //sans critère de sélection -> on écrit tous les trajets dans le fichier
-    //avec critère de sélection : selon le type de trajet ou selon la ville de départ et/ou d'arrivée
-    //Contrat  :
-    //
 
     void Lecture(std::string nomFichier, char typeTrajet);
+    //Mode d'emploi : 
+    //Permet la  lecturre depuis un fichier dans un catalogue à partir d'un type de trajet 
+    //Contrat : 
+    //on suppose ici que l'utilisateur veut un type de trajet en particulier 
+
+    void Lecture(std::string nomFichier, std::string villeDepart = "", std::string villeArrivee = "");
+    //Mode d'emploi : 
+    //Permet la lecture depuis un fichier dans une catalogue en fonction des données de l'utilisateur.
+    //L'utilisateur peut décicider choisir la ville de départ et/ou d'arrivée ou peut décider de prendre tous les trajets
 
     void RechercheAvancee(const char * Depart, const char * Arrivee) const;
     //Mode d'emploi : 

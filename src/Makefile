@@ -12,7 +12,9 @@ main : $(OBJ)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 %.o : %.cpp
 	$(CXX) -c $< $(CXXFLAGS)
+debug : $(OBJ)
+	$(CXX) -g3 -o $@ $^ $(LDFLAGS)
 clean : 
 	rm -f *.o
 mrproper : clean
-	rm -f main
+	rm -f main debug
