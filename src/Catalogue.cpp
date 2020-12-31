@@ -204,29 +204,7 @@ void Catalogue::Ecriture ( string nomFichier, char typeTrajet )
         {
                 ElemTrajet * tmp;
                 tmp = GetListeTrajets()->GetFirstElem();
-                if (typeTrajet == 'A')
-                {
-                        while (tmp != nullptr)
-                        {
-                                if (tmp->GetTraj()->GetType() == 'S')
-                                {
-                                        monFlux << tmp->GetTraj()->GetType();
-                                        monFlux << tmp->GetTraj()->GetVilleDepart();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                        monFlux << '\n';
-                                }
-                                else if (tmp->GetTraj()->GetType() == 'C')
-                                {
-                                        monFlux << tmp->GetTraj()->GetType();
-                                        tmp->GetTraj()->WriteInto(monFlux);
-                                }
-                        tmp = tmp -> GetNext(); 
-                        }
-                }
-                else if (typeTrajet == 'S')
+                if (typeTrajet == 'S')
                 {
                         while (tmp != nullptr)
                         {
