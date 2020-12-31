@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -25,9 +26,19 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+void TrajetSimple::WriteInto ( ofstream & flux )
+{
+	flux << GetType();
+	flux << GetVilleDepart();
+	flux << ',';
+	flux << GetVilleArrivee();
+	flux << ',';
+	flux << GetMoyenTransport();
+	flux << '\n';
+} 
+
 char TrajetSimple::GetType()
 {
-	
 	return 'S';
 }
 
