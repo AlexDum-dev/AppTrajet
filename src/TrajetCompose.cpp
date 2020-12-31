@@ -14,6 +14,8 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string> 
+#include <fstream>
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
 #include "ListeChainee.h"
@@ -26,6 +28,24 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
+void TrajetCompose::WriteInto ( ofstream & flux )
+{
+	ElemTrajet * tmp;
+    tmp = listeTrajets -> GetFirstElem();
+	while (tmp != nullptr)
+	{
+		flux << tmp->GetTraj()->GetVilleDepart();
+		flux << ",";
+		flux << tmp->GetTraj()->GetVilleArrivee();
+		flux << ",";
+		flux << tmp->GetTraj()->GetMoyenTransport();
+		flux << ">";
+		tmp = tmp->GetNext();								
+	}
+	flux << '\n';
+} 
+
 char TrajetCompose::GetType()
 {
 	

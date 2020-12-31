@@ -40,7 +40,9 @@ public:
     //Contrat: 
     //
 
-    void Ecriture(std::string nomFichier);
+    void Ecriture ( std::string nomFichier, std::string villeDepart = "", std::string villeArrivee = "" );
+
+    void Ecriture ( std::string nomFichier, char typeTrajet );
     //Mode d'emploi :
     //Permet d'écrire dans une fichier des trajets qui sont dans le catalogue :
     //sans critère de sélection -> on écrit tous les trajets dans le fichier

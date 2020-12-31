@@ -29,7 +29,9 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+    
+    virtual void WriteInto ( std::ofstream & flux ){};
+    
     virtual char GetType() {return 0;};
     //Mode d'emploi : 
     //Renvoie un char caractérisant le type de trajet

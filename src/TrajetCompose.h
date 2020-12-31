@@ -34,7 +34,11 @@ class TrajetCompose : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
 
-   char GetType();
+   void WriteInto ( std::ofstream & flux );
+   
+   char GetType ( );
+
+   ListeChainee * GetListeTraj ( );
     
    char * GetVilleDepart ( );
    // Mode d'emploi : 

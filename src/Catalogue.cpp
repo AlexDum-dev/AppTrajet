@@ -115,7 +115,7 @@ void Catalogue::Lecture(string nomFichier, string villeDepart, string villeArriv
                 { 
                         Trajet * traj; //trajet potentiellement ajouté
                         if((car == 'S'))
-                        {                                
+                        {
                                 cout << "Trace d'un trajet simple" << endl;
                                 getline(fic, villeDep, ',');
                                 getline(fic, villeArr, ',');
@@ -195,41 +195,222 @@ void Catalogue::Lecture(string nomFichier, string villeDepart, string villeArriv
         }
 }
 
-void Catalogue::Ecriture(string nomFichier)
+void Catalogue::Ecriture ( string nomFichier, char typeTrajet )
 //Algorithme : 
 {
-    
-    ofstream monFlux(nomFichier.c_str());
+        ofstream monFlux(nomFichier.c_str());
 
-    if(monFlux)
-    {
-        ElemTrajet * tmp;
-        tmp = GetListeTrajets()->GetFirstElem();
-        while (tmp != nullptr)
+        if(monFlux)
         {
-            if (tmp->GetTraj()->GetType() == 'S')
-            {
-                monFlux << tmp->GetTraj()->GetType();
-                monFlux << tmp->GetTraj()->GetVilleDepart();
-                monFlux << ",";
-                monFlux << tmp->GetTraj()->GetVilleArrivee();
-                monFlux << ",";
-                monFlux << tmp->GetTraj()->GetMoyenTransport();
-                monFlux << '\n';
-            }
-            else if (tmp->GetTraj()->GetType() == 'C')
-            {
-
-            }
-            tmp = tmp -> GetNext(); 
+                ElemTrajet * tmp;
+                tmp = GetListeTrajets()->GetFirstElem();
+                if (typeTrajet == 'A')
+                {
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        monFlux << tmp->GetTraj()->GetVilleDepart();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                        monFlux << '\n';
+                                }
+                                else if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        tmp->GetTraj()->WriteInto(monFlux);
+                                }
+                        tmp = tmp -> GetNext(); 
+                        }
+                }
+                else if (typeTrajet == 'S')
+                {
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        monFlux << tmp->GetTraj()->GetVilleDepart();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                        monFlux << '\n';
+                                }
+                                tmp = tmp->GetNext();
+                        } 
+                }
+                else if (typeTrajet == 'C')
+                {
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        tmp->GetTraj()->WriteInto(monFlux);
+                                }
+                        tmp = tmp->GetNext(); 
+                        }
+                }  
+        }
+        else
+        {
+                cout << "Erreur" << endl;
         } 
-    }
-    else
-    {
-        cout << "Erreur" << endl;
-    } 
 
 }
+
+void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeArrivee ) 
+{
+        bool dep = (villeDepart != "") and (villeArrivee == ""); // cas où on a juste la ville de départ
+        bool arr = (villeArrivee != "") and (villeDepart == ""); // cas où on a juste la ville d'arrivée
+        bool both = (villeArrivee != "") and (villeDepart != ""); // cas où on a les deux villes spécifiées
+
+        ofstream monFlux(nomFichier.c_str());
+        ElemTrajet * tmp;
+
+        if (both)
+        {
+                if(monFlux)
+                {
+                        tmp = GetListeTrajets()->GetFirstElem();
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0 and strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                monFlux << tmp->GetTraj()->GetVilleDepart();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                                monFlux << '\n';
+                                        }
+                                }
+                                else if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0 and strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                tmp->GetTraj()->WriteInto(monFlux);
+                                        }
+                                }
+                                tmp = tmp -> GetNext(); 
+                        }
+                }
+                else
+                {
+                        cout << "Erreur" << endl;
+                }
+        }
+        else if (dep)
+        {
+                if(monFlux)
+                {
+                        tmp = GetListeTrajets()->GetFirstElem();
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                monFlux << tmp->GetTraj()->GetVilleDepart();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                                monFlux << '\n';
+                                        }
+                                }
+                                else if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                tmp->GetTraj()->WriteInto(monFlux);
+                                        }
+                                }
+                                tmp = tmp -> GetNext(); 
+                        }
+                }
+                else
+                {
+                        cout << "Erreur" << endl;
+                } 
+        }
+        else if (arr)
+        {
+                if(monFlux)
+                {
+                        tmp = GetListeTrajets()->GetFirstElem();
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                monFlux << tmp->GetTraj()->GetVilleDepart();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                                monFlux << ",";
+                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                                monFlux << '\n';
+                                        }
+                                }
+                                else if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        if (strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
+                                        {
+                                                monFlux << tmp->GetTraj()->GetType();
+                                                tmp->GetTraj()->WriteInto(monFlux);
+                                        }
+                                }
+                                tmp = tmp -> GetNext(); 
+                        }
+                }
+                else
+                {
+                        cout << "Erreur" << endl;
+                }       
+        }
+        else if (!dep and !arr)
+        {
+                if(monFlux)
+                {
+                        tmp = GetListeTrajets()->GetFirstElem();
+                        while (tmp != nullptr)
+                        {
+                                if (tmp->GetTraj()->GetType() == 'S')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        monFlux << tmp->GetTraj()->GetVilleDepart();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
+                                        monFlux << ",";
+                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
+                                        monFlux << '\n';
+                                }
+                                else if (tmp->GetTraj()->GetType() == 'C')
+                                {
+                                        monFlux << tmp->GetTraj()->GetType();
+                                        tmp->GetTraj()->WriteInto(monFlux);
+                                }
+                                tmp = tmp -> GetNext(); 
+                        }
+                }
+                else
+                {
+                        cout << "Erreur" << endl;
+                }       
+        } 
+} 
 
 void Catalogue::RechercheAvancee(const char * Depart, const char * arrivee) const
 //Algorithme  : 
