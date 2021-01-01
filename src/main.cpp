@@ -1,12 +1,13 @@
-#include<iostream>
-#include<cstring>
-#include <string> 
-#include"TrajetSimple.h"
-#include"Trajet.h"
-#include"ListeChainee.h"
-#include"ElemTrajet.h"
-#include"TrajetCompose.h"
-#include"Catalogue.h"
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <fstream>
+#include "TrajetSimple.h"
+#include "Trajet.h"
+#include "ListeChainee.h"
+#include "ElemTrajet.h"
+#include "TrajetCompose.h"
+#include "Catalogue.h"
 using namespace std;
 
 
@@ -16,12 +17,14 @@ void ecran ( )
 	cout << "'c' pour afficher le catalogue" << endl;
 	cout << "'r' pour rechercher un trajet" << endl;
 	cout << "'x' pour faire une recherche avancée" << endl;
-	cout << "'l' pour faire une lecture depuis un fichier" <<endl;
+	cout << "'l' pour faire une lecture depuis un fichier" << endl;
+	cout << "'s' pour sauvegarder le catalogue dans un fichier" << endl;
 	cout << "'q' pour quitter" << endl;
 }
 
 int main()
 {
+	/*
 	Catalogue cata;
 	string nomFichier = "bdd.txt";
 	cata.Lecture(nomFichier);
@@ -36,8 +39,9 @@ int main()
 
 	//string nomFichier2("bdd2.txt");
 	//ata.Ecriture(nomFichier2);
+	*/
 
-	/*
+	
 	//Menu
 	
 	char commande = 'c';
@@ -50,6 +54,9 @@ int main()
 		char * va;
 		char * mdt;
 		char car[100];
+		string nomFichier;
+		string dep = "";
+		string arr = "";
         switch(commande)
 		{
             case 'a': //Ajouter un trajet
@@ -212,33 +219,203 @@ int main()
 				break;
 			case 'x': //Recherche avanée : combine les trajets composés et les trajets simples pour effectuer la recherche 
 				// Entrée de la ville de départ
-                                cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
-                                cin >> car;
-                                vd = new char[strlen(car)+1];
-                                strcpy(vd, car);
+				cout << "Veuillez saisir la ville de départ (appuyez sur entrée pour valider): ";
+				cin >> car;
+				vd = new char[strlen(car)+1];
+				strcpy(vd, car);
 
-                                // Entrée de la ville d'arrivée
-                                cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
-                                cin >> car;
-                                va = new char[strlen(car)+1];
-                                strcpy(va, car);
+				// Entrée de la ville d'arrivée
+				cout << "Veuillez saisir la ville d'arrivée (appuyez sur entrée pour valider): ";
+				cin >> car;
+				va = new char[strlen(car)+1];
+				strcpy(va, car);
 
-                                catalogue -> RechercheAvancee(vd,va);
+				catalogue -> RechercheAvancee(vd,va);
 
-                                delete[] vd;
-                                delete[] va;
+				delete[] vd;
+				delete[] va;
 			
 				break;
 	    	case 'l':
-				string nomFichier;
-				cout << "Veuillez entrez le nom du fichier depuis lequel vous voulez charger les trajets" << endl;
-				cin >> nomFichier;	
-
-				Catalogue catal;
-				catal.Lecture(nomFichier);
-				catal.AfficheCatalogue();
+			
+				cout << "Veuillez entrez le nom du fichier depuis lequel vous voulez charger les trajets : ";
+				cin >> nomFichier;
 				
+				char critereLec;
+				cout << "Veuillez faire un choix :" << endl;
+
+				cout << " - '1' pour sélectionner tous les trajets sans exception" << endl;
+				cout << " - '2' pour sélectionner seulement un type de trajet" << endl;
+				cout << " - '3' pour sélectionner des trajets selon leur ville de départ et/ou d'arrivée" << endl;
+				cout << "Votre choix : ";
+				cin >> critereLec;
+			
+
+				switch(critereLec)
+				{
+					case '1':
+						catalogue->Lecture(nomFichier);
+						break;
+					case '2':
+						cout << "Veuillez entrer '1' pour sélectionner uniquement les trajets simples" << endl;
+						cout << "Veuillez entrer '2' pour sélectionner uniquement les trajets composés" << endl;
+						char choixLec;
+						cin >> choixLec;
+
+						switch(choixLec)
+						{
+							case '1':
+								catalogue->Lecture(nomFichier, 'S');
+								break;
+							case '2':
+								catalogue->Lecture(nomFichier, 'C');
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						break;
+
+					case '3':
+						dep = "";
+						arr = "";
+						char specLec;
+						cout << "Souhaitez-vous spécifier une ville de départ ? 'o' oui / 'n' non : ";
+						cin >> specLec;
+
+						switch(specLec)
+						{
+							case 'o':
+								cout << "Veuillez saisir la ville de départ : ";
+								cin >> dep;
+								break;
+							case 'n':
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						cout << "Souhaitez-vous spécifier une ville d'arrivée ? 'o' oui / 'n' non : ";
+						cin >> specLec;
+
+						switch(specLec)
+						{
+							case 'o':
+								cout << "Veuillez saisir la ville d'arrivée : ";
+								cin >> arr;
+								break;
+							case 'n':
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						catalogue->Lecture(nomFichier, dep, arr);
+
+						break;
+
+					default:
+						cout << "Erreur sur la saisie" << endl;
+						break;
+				}
+				
+				cout << "La lecture a bien été prise en compte." << endl << endl;
+			
 				break;
+
+			case 's':
+
+				cout << "Veuillez entrez le nom du fichier dans lequel vous souhaitez sauvegarder le catalogue actuel : ";
+				cin >> nomFichier;
+				
+				char critereSauv;
+				cout << "Veuillez faire un choix :" << endl; 
+
+				cout << " - '1' pour sauvegarder tous les trajets sans exception" << endl;
+				cout << " - '2' pour sauvegarder seulement un type de trajet" << endl;
+				cout << " - '3' pour sauvegarder des trajets selon leur ville de départ et/ou d'arrivée" << endl;
+				cout << "Votre choix : ";
+				cin >> critereSauv;
+			
+
+				switch(critereSauv)
+				{
+					case '1':
+						catalogue->Ecriture(nomFichier);
+						break;
+					case '2':
+						cout << "Veuillez entrer '1' pour sauvegarder uniquement les trajets simples" << endl;
+						cout << "Veuillez entrer '2' pour sauvegarder uniquement les trajets composés" << endl;
+						char choixSauv;
+						cin >> choixSauv;
+
+						switch(choixSauv)
+						{
+							case '1':
+								catalogue->Ecriture(nomFichier, 'S');
+								break;
+							case '2':
+								catalogue->Ecriture(nomFichier, 'C');
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						break;
+
+					case '3':
+						dep = "";
+						arr = "";
+						char specSauv;
+						cout << "Souhaitez-vous spécifier une ville de départ ? 'o' oui / 'n' non : ";
+						cin >> specSauv;
+
+						switch(specSauv)
+						{
+							case 'o':
+								cout << "Veuillez saisir la ville de départ : ";
+								cin >> dep;
+								break;
+							case 'n':
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						cout << "Souhaitez-vous spécifier une ville d'arrivée ? 'o' oui / 'n' non : ";
+						cin >> specSauv;
+
+						switch(specSauv)
+						{
+							case 'o':
+								cout << "Veuillez saisir la ville d'arrivée : ";
+								cin >> arr;
+								break;
+							case 'n':
+								break;
+							default:
+								cout << "Erreur sur la saisie" << endl;
+								break;
+						}
+
+						catalogue->Ecriture(nomFichier, dep, arr);
+
+						break;
+
+					default:
+						cout << "Erreur sur la saisie" << endl;
+						break;
+				}
+				
+				cout << "Le catalogue a bien été sauvegardé." << endl << endl;
+			
+				break;
+
             case 'q':
                 break;
 			default:
@@ -246,10 +423,9 @@ int main()
 				break;
         }
 
-	
-    }	
+    }
 	delete catalogue;
 
-	*/
+	
 	return 0;
 }
