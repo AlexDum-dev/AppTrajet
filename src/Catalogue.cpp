@@ -211,13 +211,7 @@ void Catalogue::Ecriture ( string nomFichier, char typeTrajet )
                         {
                                 if (tmp->GetTraj()->GetType() == 'S')
                                 {
-                                        monFlux << tmp->GetTraj()->GetType();
-                                        monFlux << tmp->GetTraj()->GetVilleDepart();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                        monFlux << '\n';
+                                        tmp->GetTraj()->WriteInto(monFlux);
                                 }
                                 tmp = tmp->GetNext();
                         } 
@@ -262,13 +256,7 @@ void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeAr
                                 {
                                         if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0 and strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
                                         {
-                                                monFlux << tmp->GetTraj()->GetType();
-                                                monFlux << tmp->GetTraj()->GetVilleDepart();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                                monFlux << '\n';
+                                                tmp->GetTraj()->WriteInto(monFlux);
                                         }
                                 }
                                 else if (tmp->GetTraj()->GetType() == 'C')
@@ -298,13 +286,7 @@ void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeAr
                                 {
                                         if (strcmp(tmp->GetTraj()->GetVilleDepart(),villeDepart.c_str()) == 0)
                                         {
-                                                monFlux << tmp->GetTraj()->GetType();
-                                                monFlux << tmp->GetTraj()->GetVilleDepart();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                                monFlux << '\n';
+                                                tmp->GetTraj()->WriteInto(monFlux);
                                         }
                                 }
                                 else if (tmp->GetTraj()->GetType() == 'C')
@@ -334,13 +316,7 @@ void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeAr
                                 {
                                         if (strcmp(tmp->GetTraj()->GetVilleArrivee(),villeArrivee.c_str()) == 0)
                                         {
-                                                monFlux << tmp->GetTraj()->GetType();
-                                                monFlux << tmp->GetTraj()->GetVilleDepart();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                                monFlux << ",";
-                                                monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                                monFlux << '\n';
+                                                tmp->GetTraj()->WriteInto(monFlux);
                                         }
                                 }
                                 else if (tmp->GetTraj()->GetType() == 'C')
@@ -368,13 +344,7 @@ void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeAr
                         {
                                 if (tmp->GetTraj()->GetType() == 'S')
                                 {
-                                        monFlux << tmp->GetTraj()->GetType();
-                                        monFlux << tmp->GetTraj()->GetVilleDepart();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetVilleArrivee();
-                                        monFlux << ",";
-                                        monFlux << tmp->GetTraj()->GetMoyenTransport();
-                                        monFlux << '\n';
+                                        tmp->GetTraj()->WriteInto(monFlux);
                                 }
                                 else if (tmp->GetTraj()->GetType() == 'C')
                                 {

@@ -30,6 +30,8 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     
+    void WriteInto ( std::ofstream & flux );
+    
     char GetType();
     
     void AfficheTrajet ( ) const;
