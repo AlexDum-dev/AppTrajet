@@ -34,7 +34,8 @@ ListeChainee * Catalogue::GetListeTrajets()
 }
 
 void Catalogue::Lecture(string nomFichier, char typeTrajet)
-//Algorithme : Lecture dans un catalogue à en sélectionnant le type de trajet 
+//Algorithme : Lecture dans un catalogue en sélectionnant le type de trajet. Pour chaque ligne on sélectionne
+//le premier caractère qui indique le type de trajet puis on compare avec le type rentré par l'utilisateur 
 {
         ifstream fic;
         fic.open(nomFichier);
