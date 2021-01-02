@@ -34,7 +34,9 @@ ListeChainee * Catalogue::GetListeTrajets()
 }
 
 void Catalogue::Lecture(string nomFichier, char typeTrajet)
-//Algorithme : Lecture dans un catalogue à en sélectionnant le type de trajet 
+//Algorithme : Lecture dans un catalogue en sélectionnant le type de trajet. Pour chaque ligne on sélectionne
+//le premier caractère qui indique le type de trajet puis on compare avec le type rentré par l'utilisateur. Puis on get chaque mot délimités par 
+// des caractères facilitant l'algo 
 {
         ifstream fic;
         fic.open(nomFichier);
@@ -196,7 +198,8 @@ void Catalogue::Lecture(string nomFichier, string villeDepart, string villeArriv
 }
 
 void Catalogue::Ecriture ( string nomFichier, char typeTrajet )
-//Algorithme : 
+//Algorithme : Pou chaque trajet dans le catalogue, on regarde s'il correspond aux entrées de l'utilisateur (ici le type):
+//puis si le trajet vérifie les conditions, on l'écrit dans un fichier texte en respectant la syntaxe du fichier mis en place dans la méthode lecture
 {
         ofstream monFlux(nomFichier.c_str());
 
@@ -236,6 +239,8 @@ void Catalogue::Ecriture ( string nomFichier, char typeTrajet )
 }
 
 void Catalogue::Ecriture ( string nomFichier, string villeDepart, string villeArrivee ) 
+//Algorithme : Pou chaque trajet dans le catalogue on créé un trajet puis on regarde s'il correspond aux entrées de l'utilisateur:
+//l'utilisateur peut rentrer la ville de départ et/ou ville d'arrivée ou décider de ne rien spécifier et de prendre tous les trajets du fichier
 {
         bool dep = (villeDepart != "") and (villeArrivee == ""); // cas où on a juste la ville de départ
         bool arr = (villeArrivee != "") and (villeDepart == ""); // cas où on a juste la ville d'arrivée

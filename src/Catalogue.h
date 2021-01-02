@@ -41,6 +41,10 @@ public:
     //
 
     void Ecriture ( std::string nomFichier, std::string villeDepart = "", std::string villeArrivee = "" );
+    //Mode d'emploi : 
+    //Permet d'écrire dans un fihcier des trajets qui sont stockés dans le catalogue : 
+    //sans critère de sélection -> on écrit tous les trajets dans le fichier (c'est pour cela que la ville de départ et d'arrivée sont des pramètres optionnels)
+    //avec critère de sélection : selon le type de trajet ou selon la ville de départ et/ou d'arrivée
 
     void Ecriture ( std::string nomFichier, char typeTrajet );
     //Mode d'emploi :
