@@ -27,6 +27,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void TrajetSimple::WriteInto ( ofstream & flux )
+//Algorithme : on parcourt toute la liste chainée puis on écrit les caractéristiques des trajets dans un fichier passé en paramètre  : 
 {
 	flux << GetType();
 	flux << GetVilleDepart();

@@ -30,6 +30,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void TrajetCompose::WriteInto ( ofstream & flux )
+//Algorithme : on parcourt toute la liste chainée puis on écrit les caractéristiques des trajets dans un fichier passé en paramètre  : 
 {
 	ElemTrajet * tmp;
     tmp = listeTrajets -> GetFirstElem();
@@ -53,15 +54,11 @@ char TrajetCompose::GetType()
 }
 
 char * TrajetCompose::GetVilleDepart ( )
-// Algorithme :
-// Renvoie villeDepart;
 {
 	return villeDepart;
-} //----- Fin de GetVilleDepart
+} 
 
 char * TrajetCompose::GetVilleArrivee ( )
-// Algorithme :
-// Renvoie villeArrivee;
 {
 	return villeArrivee;
 } //----- Fin de GetVilleArrivee

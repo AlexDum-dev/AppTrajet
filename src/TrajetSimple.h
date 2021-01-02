@@ -31,8 +31,15 @@ public:
 //----------------------------------------------------- Méthodes publiques
     
     void WriteInto ( std::ofstream & flux );
+     //Mode d'emploi : 
+    //Est appelée depuis la méthode écriture de la classe catalogue et permet d'écrire selon une syntaxe précise le trajet dans un fichier
+    //passé en paramètre
+    //Contrat : 
+    //Cette fonction a vocation à être appelée uniquement depuis la méthode écriture de la classe catalogue
     
     char GetType();
+    //Permet de récupérer le type de trajet sous la forme d'un char
+
     
     void AfficheTrajet ( ) const;
     // Mode d'emploi :
