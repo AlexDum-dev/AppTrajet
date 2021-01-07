@@ -1,2 +1,0 @@
-SLyon,Bordeaux,Train
-SLyon,Paris,Auto
