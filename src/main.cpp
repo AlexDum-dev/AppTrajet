@@ -24,24 +24,6 @@ void ecran ( )
 
 int main()
 {
-	/*
-	Catalogue cata;
-	string nomFichier = "bdd.txt";
-	cata.Lecture(nomFichier);
-	cata.AfficheCatalogue();
-	string s = "test.txt";
-	cata.Ecriture(s);
-	cata.Lecture(s);
-	cout << "on ouvre le catalogue en sortie qui s'ajoute au précédent:" << endl;
-	cata.AfficheCatalogue();
-	//char type = 'C';
-	//cata.Lecture(nomFichier, type);
-
-	//string nomFichier2("bdd2.txt");
-	//ata.Ecriture(nomFichier2);
-	*/
-
-	
 	//Menu
 	
 	char commande = 'c';
