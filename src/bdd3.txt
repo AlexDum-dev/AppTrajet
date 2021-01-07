@@ -1,3 +1,0 @@
-CLyon,Marseille,Bateau>Marseille,Paris,Avion>
-SLyon,Bordeaux,Train
-CLyon,Marseille,Bateau>Marseille,Paris,Avion>
