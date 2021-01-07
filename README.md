@@ -10,3 +10,5 @@ git clone https://github.com/AlexDum-dev/AppTrajet.git
 Puis sur un terminal linux : 
 ``` make``` pour compiler puis  `./main` pour exécuter.
 
+`make mrproper` pour enlever les .o et les exécutables
+
